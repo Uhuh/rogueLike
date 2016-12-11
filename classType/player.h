@@ -2,6 +2,8 @@
 #define PLAYER_H
 #include <string>
 #include <cstdlib>
+#include <unistd.h>
+#include <ncurses.h>
 
 class player
 {
@@ -14,10 +16,15 @@ class player
               name("Gurk"), me("@") {};
     std::string getName() const { return name; }
     std::string getMe() const { return me; }
+    int getStr() const { return str; }
+    int getDef() const { return def; }
+    int getAtk() const { return atk; }
     int getHealth() const { return health; }
     void setHealth(int hp);
     void setName(std::string n) { name = n; }
     void setMe(char m) { me = m; }
+
+    void outStats(WINDOW*);
 };
 
 #endif
