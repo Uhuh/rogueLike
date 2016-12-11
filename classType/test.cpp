@@ -13,7 +13,6 @@ int main()
 	std::string name;
 	std::cout << "Speak your name friend and enter: ";
 	std::getline(std::cin, name);
-	std::cin.ignore(5000, '\n');
 	a.setName(name);
   int x = 10, y = 10;
   initscr();
