@@ -9,10 +9,12 @@ using namespace std;
 int main()
 {
   player a;
-  char hi;
-  cout << "Enter a letter: ";
-  cin >> hi;
-  a.setMe(hi);
+  string name;
+  cout << "Speak your name friend and enter: ";
+  getline(cin, name);
+	cin.ignore(5000, '\n');
+	a.setName(name);
+  a.setMe('@');
   int x = 10, y = 10;
   initscr();
   start_color();
