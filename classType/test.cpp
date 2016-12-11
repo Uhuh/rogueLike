@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <cstring>
 
-
 int main()
 {
   player a, b;// a is us, b is monster.
@@ -25,7 +24,7 @@ int main()
   WINDOW *game_win;
   WINDOW *stats_win;
   //(100 x big, 90 y big, 0 for left top head, 0 head top y)
-  game_win = newwin(100, 90, 0, 0);
+  game_win = newwin(50, 90, 0, 0);
   // same such
   stats_win = newwin(10, 20, 0, 100);
   while(true)
@@ -40,11 +39,8 @@ int main()
     wrefresh(game_win);
 
     //Testing stats header! progress so far.
-    mvwprintw(stats_win, 5, 1, "Me: %s", a.getName().c_str());
-    wrefresh(stats_win);
-    wclear(stats_win);
+    a.outStats(stats_win);
     wclear(game_win);
-
     if (getch() == '\033') { // if the first value is esc
       getch(); // skip the [
       switch(getch()) { // the real value
