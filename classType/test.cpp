@@ -3,11 +3,11 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstring>
-using namespace std;
 
 
 int main()
 {
+<<<<<<< HEAD
   player a;
   string name;
   cout << "Speak your name friend and enter: ";
@@ -15,13 +15,21 @@ int main()
 	cin.ignore(5000, '\n');
 	a.setName(name);
   a.setMe('@');
+=======
+  player a, b;// a is us, b is monster.
+  //going to be using a base class for both players and monster
+  //just haven't changed class name.
+  char hi;
+  std::cout << "Enter a letter: ";
+  std::cin >> hi;
+  a.setMe(hi);
+>>>>>>> df642011fcbc80aab5ec474ab87808eb2797b913
   int x = 10, y = 10;
   initscr();
   start_color();
   // (red is the char color, black is background)
   init_pair(1,COLOR_RED, COLOR_BLACK);
   noecho();
-  //cbreak();
   curs_set(FALSE);
 
   WINDOW *game_win;
@@ -29,9 +37,12 @@ int main()
   //(100 x big, 90 y big, 0 for left top head, 0 head top y)
   game_win = newwin(100, 90, 0, 0);
   // same such
-  stats_win = newwin(0, 0, 0, 90);
+  stats_win = newwin(0, 0, 0, 200);
   while(true)
   {
+    wborder(game_win, '|', '|', '-','-','+','+','+','+');
+    wborder(stats_win, '|', '|', '=','=','*','*','*','*');
+
     //Giving our guy color.
     wattron(game_win, COLOR_PAIR(1));
     //Outputting our guy
@@ -39,7 +50,7 @@ int main()
     wrefresh(game_win);
 
     //Testing stats header! progress so far.
-    mvwprintw(stats_win, 5, 0, "Me: %s", a.getMe().c_str());
+    mvwprintw(stats_win, 5, 1, "Me: %s", a.getMe().c_str());
     wrefresh(stats_win);
     wclear(stats_win);
     wclear(game_win);
