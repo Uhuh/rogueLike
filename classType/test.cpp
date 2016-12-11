@@ -10,10 +10,10 @@ int main()
   player a, b;// a is us, b is monster.
   //going to be using a base class for both players and monster
   //just haven't changed class name.
-  char hi;
-  std::cout << "Enter a letter: ";
-  std::cin >> hi;
-  a.setMe(hi);
+  std::string name;
+  std::cout << "Enter a name: ";
+  std::getline(std::cin, name);
+  a.setName(name);
   int x = 10, y = 10;
   initscr();
   start_color();
@@ -27,7 +27,7 @@ int main()
   //(100 x big, 90 y big, 0 for left top head, 0 head top y)
   game_win = newwin(100, 90, 0, 0);
   // same such
-  stats_win = newwin(0, 0, 0, 200);
+  stats_win = newwin(10, 20, 0, 100);
   while(true)
   {
     wborder(game_win, '|', '|', '-','-','+','+','+','+');
@@ -40,7 +40,7 @@ int main()
     wrefresh(game_win);
 
     //Testing stats header! progress so far.
-    mvwprintw(stats_win, 5, 1, "Me: %s", a.getMe().c_str());
+    mvwprintw(stats_win, 5, 1, "Me: %s", a.getName().c_str());
     wrefresh(stats_win);
     wclear(stats_win);
     wclear(game_win);
