@@ -10,19 +10,11 @@ int main()
   player a, b;// a is us, b is monster.
   //going to be using a base class for both players and monster
   //just haven't changed class name.
-<<<<<<< HEAD
 	std::string name;
 	std::cout << "Speak your name friend and enter: ";
 	std::getline(std::cin, name);
 	std::cin.ignore(5000, '\n');
 	a.setName(name);
-  a.setMe('@');
-=======
-  std::string name;
-  std::cout << "Enter a name: ";
-  std::getline(std::cin, name);
-  a.setName(name);
->>>>>>> 296f4a672fc06bc70855ebb02998c1d242960eaf
   int x = 10, y = 10;
   initscr();
   start_color();
