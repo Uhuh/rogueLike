@@ -7,23 +7,15 @@
 
 int main()
 {
-<<<<<<< HEAD
-  player a;
-  string name;
-  cout << "Speak your name friend and enter: ";
-  getline(cin, name);
-	cin.ignore(5000, '\n');
-	a.setName(name);
-  a.setMe('@');
-=======
   player a, b;// a is us, b is monster.
   //going to be using a base class for both players and monster
   //just haven't changed class name.
-  char hi;
-  std::cout << "Enter a letter: ";
-  std::cin >> hi;
-  a.setMe(hi);
->>>>>>> df642011fcbc80aab5ec474ab87808eb2797b913
+	std::string name;
+	std::cout << "Speak your name friend and enter: ";
+	std::getline(std::cin, name);
+	std::cin.ignore(5000, '\n');
+	a.setName(name);
+  a.setMe('@');
   int x = 10, y = 10;
   initscr();
   start_color();
