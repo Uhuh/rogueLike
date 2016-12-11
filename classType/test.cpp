@@ -18,6 +18,7 @@ int main()
   start_color();
   // (red is the char color, black is background)
   init_pair(1,COLOR_RED, COLOR_BLACK);
+  init_pair(2, COLOR_WHITE, COLOR_BLACK);
   noecho();
   curs_set(FALSE);
 
@@ -29,6 +30,8 @@ int main()
   stats_win = newwin(10, 20, 0, 100);
   while(true)
   {
+    wattron(game_win, COLOR_PAIR(2));
+
     wborder(game_win, '|', '|', '-','-','+','+','+','+');
     wborder(stats_win, '|', '|', '=','=','*','*','*','*');
 
