@@ -23,7 +23,7 @@ int main()
 
   WINDOW *game_win;
 
-  game_win = newwin(40, 40, x, y);
+  game_win = newwin(90, 90, 0, 0);
 
   while(true)
   {
