@@ -16,6 +16,7 @@ class player
     std::string getMe() const { return me; }
     int getHealth() const { return health; }
     void setHealth(int hp);
+    void setName(std::string n) { name = n; }
     void setMe(char m) { me = m; }
 };
 
