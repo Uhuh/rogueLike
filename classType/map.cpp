@@ -6,6 +6,7 @@
 
 void map::build(int x, int y)
 {
+
   for(int i = 0; i <= x; i++)
   {
     getxy(i, 0) = '#';
@@ -16,6 +17,7 @@ void map::build(int x, int y)
     getxy(0, i) = '#';
     getxy(x, i) = '#';
   }
+  
   return;
 }
 
@@ -24,6 +26,7 @@ void map::outMap(WINDOW* game_win, const player& a, int x, int y)
   // (Make this a function)
   // Coloring the map white on black.
   wattron(game_win, COLOR_PAIR(2));
+ 
   for(int i = 0; i < getWidth(); i++)
     for(int j = 0; j < getHeight(); j++)
       mvwprintw(game_win, i,j, "%c", getxy(i, j));
