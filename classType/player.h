@@ -20,9 +20,9 @@ class player
     int getDef() const { return def; }
     int getAtk() const { return atk; }
     int getHealth() const { return health; }
-    void setHealth(int hp);
-    void setName(std::string n) { name = n; }
-    void setMe(char m) { me = m; }
+    void setHealth(const int hp);
+    void setName(const std::string n) { name = n; }
+    void setMe(const char m) { me = m; }
 
     void outStats(WINDOW*);
 };
