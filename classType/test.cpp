@@ -10,11 +10,10 @@
    Trying to make the vector the map we can interact with and
    then we're outputting it with ncurses.
 
-   One issue where a dot appears in bottom right of map.
+   *Fixed the dot in the right hand corner.
+   
+   *Fixed the walls, x and y can now be bigger than one another and build the walls fine.
 
-   Issue where x and y can't be different in the 'build' function.
-   It will miss walls on the bottom or on the right depending if y or x is
-   larger than the other.
 */
 
 
@@ -26,13 +25,13 @@ int main()
 
   //constructor => map(width, height)
   //width = x, height = y
-  map hi(20, 10);
+  map hi(20, 30);
   hi.build(hi.getWidth()-1, hi.getHeight()-1);
-
+  
 
   // So the person starts in the middle of the map.
   int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
-  int x= startx, y = starty;
+  int x = startx, y = starty;
 
   std::string name;
   std::cout << "Speak your name friend and enter: ";
@@ -52,7 +51,7 @@ int main()
   WINDOW *stats_win;
 
 
-  game_win = newwin(hi.getHeight(), hi.getWidth(), 0, 0);
+  game_win = newwin(hi.getWidth(), hi.getHeight(), 0, 0);
   stats_win = newwin(10, 20, 0, 100);
 
 
