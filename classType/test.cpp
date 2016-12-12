@@ -11,7 +11,7 @@
    then we're outputting it with ncurses.
 
    *Fixed the dot in the right hand corner.
-   
+
    *Fixed the walls, x and y can now be bigger than one another and build the walls fine.
 
 */
@@ -27,7 +27,7 @@ int main()
   //width = x, height = y
   map hi(20, 30);
   hi.build(hi.getWidth()-1, hi.getHeight()-1);
-  
+
 
   // So the person starts in the middle of the map.
   int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
@@ -74,21 +74,25 @@ int main()
       getch(); // skip the [
       switch(getch()) { // the real value
           case 'A':
+            if(!(hi.getxy(x-1,y) == '#'))
               x--;
               // code for arrow up
-              break;
+            break;
           case 'B':
+            if(!(hi.getxy(x+1,y) == '#'))
               x++;
               // code for arrow down
-              break;
+            break;
           case 'C':
+            if(!(hi.getxy(x,y+1) == '#'))
               y++;
               // code for arrow right
-              break;
+            break;
           case 'D':
+            if(!(hi.getxy(x, y-1) == '#'))
               y--;
               // code for arrow left
-              break;
+            break;
       }
     }
   }
