@@ -25,6 +25,8 @@ class map
 
     void outMap(WINDOW*, const unit&, int, int);
 
+		void placeMonster(WINDOW*, const unit&, int, int);
+
     map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'){}
     void build(int row, int col);
 };

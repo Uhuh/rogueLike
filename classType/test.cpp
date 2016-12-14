@@ -36,6 +36,8 @@ int main()
   std::cout << "Speak your name friend and enter: ";
   std::getline(std::cin, name);
   a.setName(name);
+  b.setName("Goblin");
+	b.setMe('G');
 
   b.setName("Goblin");
   b.setMe('G');
@@ -46,17 +48,27 @@ int main()
 
   init_pair(1,COLOR_RED, COLOR_BLACK);
   init_pair(2, COLOR_WHITE, COLOR_BLACK);
+	init_pair(3, COLOR_GREEN, COLOR_BLACK);
+
   noecho();
   curs_set(FALSE);
 
   WINDOW *game_win;
   WINDOW *stats_win;
+<<<<<<< HEAD
   WINDOW *monster_win;
 
   game_win = newwin(hi.getWidth(), hi.getHeight(), 0, 0);
   stats_win = newwin(10, 20, 0, hi.getHeight()+5);
   monster_win = newwin(10, 20, 30, hi.getHeight()+5);
 
+=======
+	WINDOW *monster_win;
+
+  game_win = newwin(hi.getWidth(), hi.getHeight(), 0, 0);
+  stats_win = newwin(10, 20, 0, 100);
+	monster_win = newwin(10, 20, 30, 100);
+>>>>>>> 4393764c4ea2a057636bb354f1a737ee36dc0a06
 
   while(true)
   {
@@ -67,10 +79,16 @@ int main()
 
     //outputting the map to screen.
     hi.outMap(game_win, a, x, y);
+		hi.placeMonster(game_win, b, 10, 2);
 
     //outputting the players stats in another window.
     a.outStats(stats_win);
+<<<<<<< HEAD
     b.outStats(monster_win);
+=======
+		b.outStats(monster_win);
+
+>>>>>>> 4393764c4ea2a057636bb354f1a737ee36dc0a06
 
 
 
