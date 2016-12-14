@@ -1,6 +1,6 @@
 #ifndef MAP_H
 #define MAP_H
-#include "player.h"
+#include "unit.h"
 #include <cassert>
 #include <vector>
 #include <ncurses.h>
@@ -23,7 +23,7 @@ class map
 
     void buildRoom(const int x, const int y, const int width, const int height);
 
-    void outMap(WINDOW*, const player&, int, int);
+    void outMap(WINDOW*, const unit&, int, int);
 
     map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'){}
     void build(int x, int y);

@@ -1,8 +1,8 @@
-#include "player.h"
+#include "unit.h"
 #include <iostream>
 
 
-void player::setHealth(int hp)
+void unit::setHealth(int hp)
 {
   if(hp < 0)
   {
@@ -17,7 +17,7 @@ void player::setHealth(int hp)
   return;
 }
 
-void player::outStats(WINDOW *stats_win)
+void unit::outStats(WINDOW *stats_win)
 {
   mvwprintw(stats_win, 1, 1, "Name: %s", getName().c_str());
   mvwprintw(stats_win, 2, 1, "Health: %i", getHealth());

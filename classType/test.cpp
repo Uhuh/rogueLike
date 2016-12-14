@@ -1,4 +1,4 @@
-#include "player.h"
+#include "unit.h"
 #include <ncurses.h>
 #include <vector>
 #include "map.h"
@@ -19,7 +19,7 @@
 
 int main()
 {
-  player a, b;// a is us, b is monster.
+  unit a, b;// a is us, b is monster.
   //going to be using a base class for both players and monster
   //just haven't changed class name.
 
