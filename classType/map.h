@@ -12,7 +12,7 @@ class map
   private:
     std::vector<char> data;
     int width, height;
-    
+
   public:
     const char& getxy(int x,int y) const { assert(x <= width && y <= height); return data[x+y*width]; }
 
@@ -20,6 +20,8 @@ class map
 
     int getWidth() const { return width; }
     int getHeight() const { return height; }
+
+    void buildRoom(const int x, const int y, const int width, const int height);
 
     void outMap(WINDOW*, const player&, int, int);
 
