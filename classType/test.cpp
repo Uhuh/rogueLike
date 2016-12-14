@@ -55,20 +55,11 @@ int main()
 
   WINDOW *game_win;
   WINDOW *stats_win;
-<<<<<<< HEAD
   WINDOW *monster_win;
 
   game_win = newwin(hi.getWidth(), hi.getHeight(), 0, 0);
   stats_win = newwin(10, 20, 0, hi.getHeight()+5);
   monster_win = newwin(10, 20, 30, hi.getHeight()+5);
-
-=======
-	WINDOW *monster_win;
-
-  game_win = newwin(hi.getWidth(), hi.getHeight(), 0, 0);
-  stats_win = newwin(10, 20, 0, 100);
-	monster_win = newwin(10, 20, 30, 100);
->>>>>>> 4393764c4ea2a057636bb354f1a737ee36dc0a06
 
   while(true)
   {
@@ -83,12 +74,9 @@ int main()
 
     //outputting the players stats in another window.
     a.outStats(stats_win);
-<<<<<<< HEAD
     b.outStats(monster_win);
-=======
-		b.outStats(monster_win);
 
->>>>>>> 4393764c4ea2a057636bb354f1a737ee36dc0a06
+
 
 
 

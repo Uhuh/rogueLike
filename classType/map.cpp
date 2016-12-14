@@ -42,22 +42,18 @@ void map::outMap(WINDOW* game_win, const unit& a, int row, int col)
   return;
 }
 
-<<<<<<< HEAD
-void map::buildRoom(const int row, const int col, const int width, const int height)
-=======
+
 void map::placeMonster(WINDOW* game_win, const unit& b, int x, int y)
 {
 
 	wattron(game_win, COLOR_PAIR(3));
   mvwprintw(game_win, x, y, b.getMe().c_str());
 	wrefresh(game_win);
-//	wclear(game_win);
 
 	return;
 }
 
-void map::buildRoom(const int x, const int y, const int width, const int height)
->>>>>>> 4393764c4ea2a057636bb354f1a737ee36dc0a06
+void map::buildRoom(const int row, const int col, const int width, const int height)
 {
   assert(row + width <= getWidth() && col + height <= getHeight());
   assert(row >= 0 && col >= 0 && width > 0 && height > 0);
