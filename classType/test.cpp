@@ -27,7 +27,7 @@ int main()
   //int 1 = row, int 2 = col
   map hi(40, 60);
   hi.build(hi.getWidth()-1, hi.getHeight()-1);
-  hi.buildRoom(20, 13, 5, 5);
+  hi.buildRoom(20, 13, 10, 15);
   // So the person starts in the middle of the map.
   int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
   int x = startx, y = starty;
@@ -36,6 +36,9 @@ int main()
   std::cout << "Speak your name friend and enter: ";
   std::getline(std::cin, name);
   a.setName(name);
+
+  b.setName("Goblin");
+  b.setMe('G');
 
   initscr();
   start_color();
@@ -48,10 +51,11 @@ int main()
 
   WINDOW *game_win;
   WINDOW *stats_win;
-
+  WINDOW *monster_win;
 
   game_win = newwin(hi.getWidth(), hi.getHeight(), 0, 0);
-  stats_win = newwin(10, 20, 0, 100);
+  stats_win = newwin(10, 20, 0, hi.getHeight()+5);
+  monster_win = newwin(10, 20, 30, hi.getHeight()+5);
 
 
   while(true)
@@ -59,13 +63,14 @@ int main()
 
   // Make stats window pretty.
     wborder(stats_win, '|', '|', '=','=','*','*','*','*');
+    wborder(monster_win, '|', '|', '=','=','*','*','*','*');
 
     //outputting the map to screen.
     hi.outMap(game_win, a, x, y);
 
     //outputting the players stats in another window.
     a.outStats(stats_win);
-
+    b.outStats(monster_win);
 
 
 
