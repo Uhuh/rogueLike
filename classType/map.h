@@ -14,19 +14,19 @@ class map
     int width, height;
 
   public:
-    const char& getxy(int x,int y) const { assert(x <= width && y <= height); return data[x+y*width]; }
+    const char& getxy(int row,int col) const { assert(row <= width && col <= height); return data[row+col*width]; }
 
-    char& getxy(int x,int y) { assert(x <= width && y <= height); return data[x+y*width]; }
+    char& getxy(int row,int col) { assert(row <= width && col <= height); return data[row+col*width]; }
 
     int getWidth() const { return width; }
     int getHeight() const { return height; }
 
-    void buildRoom(const int x, const int y, const int width, const int height);
+    void buildRoom(const int row, const int col, const int width, const int height);
 
     void outMap(WINDOW*, const player&, int, int);
 
     map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'){}
-    void build(int x, int y);
+    void build(int row, int col);
 };
 
 #endif

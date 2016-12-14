@@ -4,23 +4,23 @@
 // Function builds the great walls of trump
 //lol
 
-void map::build(int x, int y)
+void map::build(int row, int col)
 {
-  for(int i = 0; i <= x; i++)
+  for(int i = 0; i <= row; i++)
   {
     getxy(i, 0) = '#';
-    getxy(i, y) = '#';
+    getxy(i, col) = '#';
   }
-  for(int i = 0; i <= y; i++)
+  for(int i = 0; i <= col; i++)
   {
     getxy(0, i) = '#';
-    getxy(x, i) = '#';
+    getxy(row, i) = '#';
   }
 
   return;
 }
 
-void map::outMap(WINDOW* game_win, const player& a, int x, int y)
+void map::outMap(WINDOW* game_win, const player& a, int row, int col)
 {
   // (Make this a function)
   // Coloring the map white on black.
@@ -33,7 +33,7 @@ void map::outMap(WINDOW* game_win, const player& a, int x, int y)
   // Making the little guy red.
   wattron(game_win, COLOR_PAIR(1));
   //Outputting our guys symbol.
-  mvwprintw(game_win, x, y, a.getMe().c_str());
+  mvwprintw(game_win, row, col, a.getMe().c_str());
 
   wrefresh(game_win);
   wclear(game_win);
@@ -41,20 +41,20 @@ void map::outMap(WINDOW* game_win, const player& a, int x, int y)
   return;
 }
 
-void map::buildRoom(const int x, const int y, const int width, const int height)
+void map::buildRoom(const int row, const int col, const int width, const int height)
 {
-  assert(x + width <= getWidth() && y + height <= getHeight());
-  assert(x >= 0 && y >= 0 && width > 0 && height > 0);
-  for(int i = x; i <= width+x; i++)
+  assert(row + width <= getWidth() && col + height <= getHeight());
+  assert(row >= 0 && col >= 0 && width > 0 && height > 0);
+  for(int i = row; i <= width+row; i++)
   {
-    getxy(i, y) = '#';
-    getxy(i, height+y) = '#';
+    getxy(i, col) = '#';
+    getxy(i, height+col) = '#';
   }
-  for(int i = y; i <= height+y; i++)
+  for(int i = col; i <= height+col; i++)
   {
-    getxy(x, i) = '#';
-    getxy(width+x, i) = '#';
+    getxy(row, i) = '#';
+    getxy(width+row, i) = '#';
   }
-  getxy(width+x-3, height+y) = 'D';
+  getxy(width+row-3, height+col) = '|';
   return;
 }
