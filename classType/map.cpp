@@ -45,8 +45,12 @@ void map::outMap(WINDOW* game_win, const unit& a)
 
 void map::placeMonster(WINDOW* game_win, const unit& b)
 {
+  /*
+    Add checks to make sure we don't place in a wall or on the user, etc
+  */
 
 	wattron(game_win, COLOR_PAIR(3));
+  getxy(b.m_x, b.m_y) = b.getMe()[0];
   mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
 	wrefresh(game_win);
 
@@ -67,6 +71,6 @@ void map::buildRoom(const int row, const int col, const int width, const int hei
     getxy(row, i) = '#';
     getxy(width+row, i) = '#';
   }
-  getxy(width+row-3, height+col) = '|';
+  getxy(width+row-3, height+col) = '.';
   return;
 }
