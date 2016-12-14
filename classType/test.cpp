@@ -45,7 +45,7 @@ int main()
 
   b.setName("Goblin");
   b.setMe('G');
-	
+
 	b.m_x = rand()%(hi.getWidth()-(hi.getWidth()/2))+1;
 	b.m_y = rand()%(hi.getHeight()-(hi.getHeight()/2))+1;
   initscr();
@@ -89,22 +89,22 @@ int main()
       getch(); // skip the [
       switch(getch()) { // the real value
           case 'A':
-            if(!(hi.getxy(x-1,y) == '#'))
+            if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
               a.m_x-=1;
               // code for arrow up
             break;
           case 'B':
-            if(!(hi.getxy(x+1,y) == '#'))
+            if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
               a.m_x+=1;
               // code for arrow down
             break;
           case 'C':
-            if(!(hi.getxy(x,y+1) == '#'))
+            if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
               a.m_y+=1;
               // code for arrow right
             break;
           case 'D':
-            if(!(hi.getxy(x, y-1) == '#'))
+            if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
               a.m_y-=1;
               // code for arrow left
             break;
