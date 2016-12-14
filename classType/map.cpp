@@ -40,3 +40,21 @@ void map::outMap(WINDOW* game_win, const player& a, int x, int y)
 
   return;
 }
+
+void map::buildRoom(const int x, const int y, const int width, const int height)
+{
+  assert(x + width <= getWidth() && y + height <= getHeight());
+  assert(x >= 0 && y >= 0 && width > 0 && height > 0);
+  for(int i = x; i <= width+x; i++)
+  {
+    getxy(i, y) = '#';
+    getxy(i, height+y) = '#';
+  }
+  for(int i = y; i <= height+y; i++)
+  {
+    getxy(x, i) = '#';
+    getxy(width+x, i) = '#';
+  }
+  getxy(width+x-3, height+y) = 'D';
+  return;
+}
