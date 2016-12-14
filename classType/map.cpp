@@ -20,7 +20,11 @@ void map::build(int row, int col)
   return;
 }
 
+<<<<<<< HEAD
 void map::outMap(WINDOW* game_win, const player& a, int row, int col)
+=======
+void map::outMap(WINDOW* game_win, const unit& a, int x, int y)
+>>>>>>> 8e1a73b7822e458a3ce83dbc815d55e73747f91c
 {
   // (Make this a function)
   // Coloring the map white on black.

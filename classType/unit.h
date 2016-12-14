@@ -5,14 +5,14 @@
 #include <unistd.h>
 #include <ncurses.h>
 
-class player
+class unit
 {
   private:
     int health, atk, def, str;
     std::string name;
     std::string me;
   public:
-    player(): health(10), atk(1), def(1), str(1),
+    unit(): health(10), atk(1), def(1), str(1),
               name("Gurk"), me("@") {};
     std::string getName() const { return name; }
     std::string getMe() const { return me; }
