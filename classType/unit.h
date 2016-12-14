@@ -20,6 +20,8 @@ class unit
     int getDef() const { return def; }
     int getAtk() const { return atk; }
     int getHealth() const { return health; }
+		int m_x;
+		int m_y;
     void setHealth(const int hp);
     void setName(const std::string n) { name = n; }
     void setMe(const char m) { me = m; }

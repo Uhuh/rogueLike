@@ -23,9 +23,9 @@ class map
 
     void buildRoom(const int row, const int col, const int width, const int height);
 
-    void outMap(WINDOW*, const unit&, int, int);
+    void outMap(WINDOW*, const unit&);
 
-		void placeMonster(WINDOW*, const unit&, int, int);
+		void placeMonster(WINDOW*, const unit&);
 
     map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'){}
     void build(int row, int col);

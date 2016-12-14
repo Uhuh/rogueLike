@@ -21,7 +21,7 @@ void map::build(int row, int col)
 }
 
 
-void map::outMap(WINDOW* game_win, const unit& a, int row, int col)
+void map::outMap(WINDOW* game_win, const unit& a)
 {
   // (Make this a function)
   // Coloring the map white on black.
@@ -34,7 +34,7 @@ void map::outMap(WINDOW* game_win, const unit& a, int row, int col)
   // Making the little guy red.
   wattron(game_win, COLOR_PAIR(1));
   //Outputting our guys symbol.
-  mvwprintw(game_win, row, col, a.getMe().c_str());
+  mvwprintw(game_win, a.m_x, a.m_y, a.getMe().c_str());
 
   wrefresh(game_win);
  // wclear(game_win);
@@ -43,11 +43,11 @@ void map::outMap(WINDOW* game_win, const unit& a, int row, int col)
 }
 
 
-void map::placeMonster(WINDOW* game_win, const unit& b, int x, int y)
+void map::placeMonster(WINDOW* game_win, const unit& b)
 {
 
 	wattron(game_win, COLOR_PAIR(3));
-  mvwprintw(game_win, x, y, b.getMe().c_str());
+  mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
 	wrefresh(game_win);
 
 	return;
