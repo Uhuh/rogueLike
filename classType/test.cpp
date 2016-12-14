@@ -25,9 +25,9 @@ int main()
 
   //constructor => map(width, height)
   //width = x, height = y
-  map hi(20, 30);
+  map hi(40, 60);
   hi.build(hi.getWidth()-1, hi.getHeight()-1);
-
+  hi.buildRoom(20, 30, 5, 5);
 
   // So the person starts in the middle of the map.
   int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
