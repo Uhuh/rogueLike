@@ -24,11 +24,10 @@ int main()
   //just haven't changed class name.
 
   //constructor => map(width, height)
-  //width = x, height = y
+  //int 1 = row, int 2 = col
   map hi(40, 60);
   hi.build(hi.getWidth()-1, hi.getHeight()-1);
-  hi.buildRoom(20, 30, 5, 5);
-
+  hi.buildRoom(20, 13, 5, 5);
   // So the person starts in the middle of the map.
   int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
   int x = startx, y = starty;
