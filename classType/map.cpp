@@ -1,5 +1,6 @@
 #include "map.h"
 #include <iostream>
+#include <random>
 
 // Function builds the great walls of trump
 //lol
@@ -42,6 +43,55 @@ void map::outMap(WINDOW* game_win, const unit& a)
   return;
 }
 
+void map::moveMonster(unit & b)
+{
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> dis(1, 4);
+
+
+  switch(dis(gen))
+  {
+    case 1:
+
+      if((getxy( b.m_x - 1, b.m_y) == '.'))
+      {
+        b.m_x-=1;
+        getxy(b.m_x + 1, b.m_y) = '.';
+      }
+      break;
+    case 2:
+
+      if((getxy( b.m_x + 1, b.m_y) == '.'))
+      {
+        b.m_x+=1;
+        getxy(b.m_x - 1, b.m_y) = '.';
+      }
+
+      break;
+    case 3:
+
+      if((getxy( b.m_x , b.m_y + 1) == '.'))
+      {
+        b.m_y+=1;
+        getxy(b.m_x, b.m_y - 1) = '.';
+      }
+      break;
+    case 4:
+
+      if((getxy( b.m_x, b.m_y - 1) == '.'))
+      {
+        b.m_y-=1;
+        getxy(b.m_x, b.m_y + 1) = '.';
+      }
+      break;
+  }
+
+  return;
+}
+
+
+
 
 void map::placeMonster(WINDOW* game_win, const unit& b)
 {
@@ -49,10 +99,10 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
     Add checks to make sure we don't place in a wall or on the user, etc
   */
 
-	wattron(game_win, COLOR_PAIR(3));
+  wattron(game_win, COLOR_PAIR(3));
   getxy(b.m_x, b.m_y) = b.getMe()[0];
   mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
-	wrefresh(game_win);
+  wrefresh(game_win);
 
 	return;
 }

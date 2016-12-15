@@ -22,11 +22,9 @@ class map
     int getHeight() const { return height; }
 
     void buildRoom(const int row, const int col, const int width, const int height);
-
     void outMap(WINDOW*, const unit&);
-
 		void placeMonster(WINDOW*, const unit&);
-
+    void moveMonster(unit & b);
     map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'){}
     void build(int row, int col);
 };
