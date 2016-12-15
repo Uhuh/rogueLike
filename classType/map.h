@@ -1,6 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 #include "unit.h"
+#include "rand.h"
 #include <cassert>
 #include <vector>
 #include <ncurses.h>
@@ -14,19 +15,21 @@ class map
     int width, height;
 
   public:
-    const char& getxy(int row,int col) const { assert(row <= width && col <= height); return data[row+col*width]; }
+    map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'){}
 
+
+    const char& getxy(int row,int col) const { assert(row <= width && col <= height); return data[row+col*width]; }
     char& getxy(int row,int col) { assert(row <= width && col <= height); return data[row+col*width]; }
 
     int getWidth() const { return width; }
     int getHeight() const { return height; }
 
+    void build(int row, int col);
     void buildRoom(const int row, const int col, const int width, const int height);
     void outMap(WINDOW*, const unit&);
 		void placeMonster(WINDOW*, const unit&);
     void moveMonster(unit & b);
-    map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'){}
-    void build(int row, int col);
+
 };
 
 #endif

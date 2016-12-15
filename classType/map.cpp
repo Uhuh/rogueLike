@@ -45,15 +45,17 @@ void map::outMap(WINDOW* game_win, const unit& a)
 
 void map::moveMonster(unit & b)
 {
+  // Something that isn't rand()
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_int_distribution<> dis(1, 4);
 
-
+  // Picks a number from 1 to 4.
   switch(dis(gen))
   {
     case 1:
-
+    // We need to stop the monster from leaving a trail.
+    // So replace the last spot they were in with a dot (' . ')
       if((getxy( b.m_x - 1, b.m_y) == '.'))
       {
         b.m_x-=1;
@@ -99,10 +101,13 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
     Add checks to make sure we don't place in a wall or on the user, etc
   */
 
-  wattron(game_win, COLOR_PAIR(3));
-  getxy(b.m_x, b.m_y) = b.getMe()[0];
-  mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
-  wrefresh(game_win);
+  if(getxy(b.m_x, b.m_y) != '#')
+  {
+    getxy(b.m_x, b.m_y) = b.getMe()[0];
+    wattron(game_win, COLOR_PAIR(3));
+    mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
+    wrefresh(game_win);
+  }
 
 	return;
 }
