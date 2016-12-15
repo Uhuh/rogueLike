@@ -12,6 +12,11 @@ class unit
     std::string name;
     std::string me;
   public:
+    // These are the x/y co-ordinates, we made them public because
+    // we got sick of making getters/setters
+    int m_x;
+		int m_y;
+
     unit(): health(10), atk(1), def(1), str(1),
               name("Gurk"), me("@") {};
     std::string getName() const { return name; }
@@ -20,8 +25,6 @@ class unit
     int getDef() const { return def; }
     int getAtk() const { return atk; }
     int getHealth() const { return health; }
-		int m_x;
-		int m_y;
     void setHealth(const int hp);
     void setName(const std::string n) { name = n; }
     void setMe(const char m) { me = m; }
