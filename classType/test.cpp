@@ -82,12 +82,14 @@ int main()
     b.outStats(monster_win);
 
 
+    hi.moveMonster(b);
 
 
-
-    if (getch() == '\033') { // if the first value is esc
+    if (getch() == '\033')
+    { // if the first value is esc
       getch(); // skip the [
-      switch(getch()) { // the real value
+      switch(getch())
+      { // the real value
           case 'A':
             if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
               a.m_x-=1;
