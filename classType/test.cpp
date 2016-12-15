@@ -30,7 +30,13 @@ int main()
   //int 1 = row, int 2 = col
   map hi(40, 60);
   hi.build(hi.getWidth()-1, hi.getHeight()-1);
-  hi.buildRoom(20, 13, 10, 15);
+
+  //Check the rand.cpp for how this is made.
+  // Trying out how to make the room by random.
+  hi.buildRoom(hi.getWidth()/rand_int(2, 8), hi.getHeight()/rand_int(2, 8),
+               hi.getWidth()/rand_int(2, 8), hi.getHeight()/rand_int(2, 8));
+
+
   // So the person starts in the middle of the map.
   int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
   int x = startx, y = starty;
@@ -46,8 +52,8 @@ int main()
   b.setName("Goblin");
   b.setMe('G');
 
-	b.m_x = rand()%(hi.getWidth()-(hi.getWidth()/2))+1;
-	b.m_y = rand()%(hi.getHeight()-(hi.getHeight()/2))+1;
+	b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
+	b.m_y = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
   initscr();
   start_color();
   // (red is the char color, black is background)
