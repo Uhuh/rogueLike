@@ -81,8 +81,10 @@ int main()
     wborder(monster_win, '|', '|', '=','=','*','*','*','*');
 
     //outputting the map to screen.
-    hi.outMap(game_win, a);
+    hi.outMap(game_win);
 		hi.placeMonster(game_win, b);
+		hi.outUser(game_win, a);
+
     //outputting the players stats in another window.
     a.outStats(stats_win);
     b.outStats(monster_win);
