@@ -22,7 +22,7 @@ void map::build(int row, int col)
 }
 
 
-void map::outMap(WINDOW* game_win, const unit& a)
+void map::outMap(WINDOW* game_win)
 {
   // (Make this a function)
   // Coloring the map white on black.
@@ -32,14 +32,22 @@ void map::outMap(WINDOW* game_win, const unit& a)
     for(int j = 0; j < getHeight(); j++)
       mvwprintw(game_win, i,j, "%c", getxy(i, j));
 
-  // Making the little guy red.
+
+
+  wrefresh(game_win);
+ // wclear(game_win);
+
+  return;
+}
+
+void map::outUser(WINDOW* game_win, const unit & a)
+{
   wattron(game_win, COLOR_PAIR(1));
   //Outputting our guys symbol.
   mvwprintw(game_win, a.m_x, a.m_y, a.getMe().c_str());
 
   wrefresh(game_win);
  // wclear(game_win);
-
   return;
 }
 

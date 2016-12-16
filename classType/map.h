@@ -24,9 +24,10 @@ class map
     int getWidth() const { return width; }
     int getHeight() const { return height; }
 
+    void outUser(WINDOW* game_win, const unit & a);
     void build(int row, int col);
     void buildRoom(const int row, const int col, const int width, const int height);
-    void outMap(WINDOW*, const unit&);
+    void outMap(WINDOW*);
 		void placeMonster(WINDOW*, const unit&);
     void moveMonster(unit & b);
 
