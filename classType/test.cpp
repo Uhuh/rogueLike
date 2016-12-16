@@ -99,7 +99,7 @@ int main()
           case 'A':
             if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
               a.m_x-=1;
-						else if((hi.getxy(a.m_x - 1, a.m_y) == 'G' /*b.getMe()*/))
+						else if((hi.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
 							if(b.getHealth() == 0)
@@ -110,7 +110,7 @@ int main()
           case 'B':
             if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
               a.m_x+=1;
-						else if((hi.getxy(a.m_x + 1, a.m_y) == 'G' /*b.getMe()*/))
+						else if((hi.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
 							if(b.getHealth() == 0)
@@ -121,7 +121,7 @@ int main()
           case 'C':
             if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
               a.m_y+=1;
-						else if((hi.getxy(a.m_x, a.m_y + 1) == 'G' /*b.getMe()*/))
+						else if((hi.getxy(a.m_x, a.m_y + 1) == b.getMe()[0]))
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
 							if(b.getHealth() == 0)
@@ -132,7 +132,7 @@ int main()
           case 'D':
             if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
               a.m_y-=1;
-						else if((hi.getxy(a.m_x, a.m_y - 1) == 'G' /*b.getMe()*/))
+						else if((hi.getxy(a.m_x, a.m_y - 1) == b.getMe()[0]))
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
 							if(b.getHealth() == 0)
