@@ -98,46 +98,66 @@ int main()
       { // the real value
           case 'A':
             if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
-              a.m_x-=1;
+						{
+								a.m_x-=1;
+						}
 						else if((hi.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
+						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
-								//endwin();
-								return 0;
+							{
+								b.setMe('.');
+							}
               // code for arrow up
             break;
           case 'B':
             if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
+						{
               a.m_x+=1;
+						}
 						else if((hi.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
+						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
-								//endwin();
-								return 0;
+							{
+								b.setMe('.');
+							}
               // code for arrow down
             break;
           case 'C':
             if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
+						{
               a.m_y+=1;
+						}
 						else if((hi.getxy(a.m_x, a.m_y + 1) == b.getMe()[0]))
+						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
-								//endwin();
-								return 0;
+							{
+								b.setMe('.');
+							}
               // code for arrow right
             break;
           case 'D':
             if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
+						{
               a.m_y-=1;
+						}
 						else if((hi.getxy(a.m_x, a.m_y - 1) == b.getMe()[0]))
+						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
-								//endwin();
-								return 0;
+							{
+								b.setMe('.');
+							}
               // code for arrow left
             break;
       }
