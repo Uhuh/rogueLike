@@ -101,27 +101,42 @@ int main()
           case 'A':
             if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
 						{
+<<<<<<< HEAD
               a.m_x-=1;
+=======
+								a.m_x-=1;
+>>>>>>> 50f78800fb298d4734c5720c32a8dc7f390f132f
 						}
 						else if((hi.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
 						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
 							{
 								b.setMe('.');
 							}
+<<<<<<< HEAD
 						}
 						break;
           case 'B':
             if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
 						{
 						  a.m_x+=1;
+=======
+              // code for arrow up
+            break;
+          case 'B':
+            if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
+						{
+              a.m_x+=1;
+>>>>>>> 50f78800fb298d4734c5720c32a8dc7f390f132f
 						}
 						else if((hi.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
 						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
 							{
 								b.setMe('.');
@@ -138,12 +153,18 @@ int main()
 						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
 							{
 								b.setMe('.');
 							}
+<<<<<<< HEAD
 						}
 						break;
+=======
+              // code for arrow right
+            break;
+>>>>>>> 50f78800fb298d4734c5720c32a8dc7f390f132f
           case 'D':
             if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
 						{
@@ -153,11 +174,16 @@ int main()
 						{
 							b.setHealth(b.getHealth()-1);
 							b.outStats(monster_win);
+						}
 							if(b.getHealth() == 0)
 							{
 								b.setMe('.');
 							}
+<<<<<<< HEAD
 						}
+=======
+              // code for arrow left
+>>>>>>> 50f78800fb298d4734c5720c32a8dc7f390f132f
             break;
       }
     }
