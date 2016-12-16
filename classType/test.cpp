@@ -88,7 +88,7 @@ int main()
     b.outStats(monster_win);
 
 
-    hi.moveMonster(b);
+//    hi.moveMonster(b);
 
 
     if (getch() == '\033')
@@ -99,21 +99,45 @@ int main()
           case 'A':
             if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
               a.m_x-=1;
+						else if((hi.getxy(a.m_x - 1, a.m_y) == 'G' /*b.getMe()*/))
+							b.setHealth(b.getHealth()-1);
+							b.outStats(monster_win);
+							if(b.getHealth() == 0)
+								//endwin();
+								return 0;
               // code for arrow up
             break;
           case 'B':
             if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
               a.m_x+=1;
+						else if((hi.getxy(a.m_x + 1, a.m_y) == 'G' /*b.getMe()*/))
+							b.setHealth(b.getHealth()-1);
+							b.outStats(monster_win);
+							if(b.getHealth() == 0)
+								//endwin();
+								return 0;
               // code for arrow down
             break;
           case 'C':
             if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
               a.m_y+=1;
+						else if((hi.getxy(a.m_x, a.m_y + 1) == 'G' /*b.getMe()*/))
+							b.setHealth(b.getHealth()-1);
+							b.outStats(monster_win);
+							if(b.getHealth() == 0)
+								//endwin();
+								return 0;
               // code for arrow right
             break;
           case 'D':
             if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
               a.m_y-=1;
+						else if((hi.getxy(a.m_x, a.m_y - 1) == 'G' /*b.getMe()*/))
+							b.setHealth(b.getHealth()-1);
+							b.outStats(monster_win);
+							if(b.getHealth() == 0)
+								//endwin();
+								return 0;
               // code for arrow left
             break;
       }
