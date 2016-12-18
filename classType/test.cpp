@@ -20,7 +20,7 @@
 
 int main()
 {
-	srand(time(NULL));
+  srand(time(NULL));
 
   unit a, b;// a is us, b is monster.
   //going to be using a base class for both players and monster
@@ -41,8 +41,8 @@ int main()
   int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
   int x = startx, y = starty;
 
-	a.m_x = startx;
-	a.m_y = starty;
+  a.m_x = startx;
+  a.m_y = starty;
 
   std::string name;
   std::cout << "Speak your name friend and enter: ";
@@ -52,8 +52,8 @@ int main()
   b.setName("Goblin");
   b.setMe('G');
 
-	b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
-	b.m_y = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
+  b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
+  b.m_y = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
   initscr();
   start_color();
   // (red is the char color, black is background)
@@ -82,83 +82,79 @@ int main()
 
     //outputting the map to screen.
     hi.outMap(game_win);
-		hi.placeMonster(game_win, b);
-		hi.outUser(game_win, a);
+    hi.placeMonster(game_win, b);
+    hi.outUser(game_win, a);
 
     //outputting the players stats in another window.
     a.outStats(stats_win);
     b.outStats(monster_win);
-
-
 //    hi.moveMonster(b);
-
-
     if (getch() == '\033')
-		{ // if the first value is esc
-			getch(); // skip the [
-			switch(getch())
-			{ // the real value
-        case 'A':
-        	if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
-					{
+    { // if the first value is esc
+      getch(); // skip the [
+      switch(getch())
+      { // the real value
+        case 'A'
+          if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
+          {
             a.m_x-=1;
-					}
-					else if((hi.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
-					{
-						b.setHealth(b.getHealth()-1);
-						b.outStats(monster_win);
-					}
-					if(b.getHealth() == 0)
-					{
-						b.setMe('.');
-					}
-					break;
+          }
+          else if((hi.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
+          {
+            b.setHealth(b.getHealth()-1);
+            b.outStats(monster_win);
+          }
+          if(b.getHealth() == 0)
+          {
+            b.setMe('.');
+          }
+          break;
         case 'B':
-        	if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
-					{
-						a.m_x+=1;
-					}
-					else if((hi.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
-					{
-						b.setHealth(b.getHealth()-1);
-						b.outStats(monster_win);
-					}
-					if(b.getHealth() == 0)
-					{
-						b.setMe('.');
-					}
-					break;
-      	case 'C':
-        	if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
-					{
-          	a.m_y+=1;
-					}
-					else if((hi.getxy(a.m_x, a.m_y + 1) == b.getMe()[0]))
-					{
-						b.setHealth(b.getHealth()-1);
-						b.outStats(monster_win);
-					}
-					if(b.getHealth() == 0)
-					{
-						b.setMe('.');
-					}
+          if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
+          {
+            a.m_x+=1;
+          }
+          else if((hi.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
+          {
+            b.setHealth(b.getHealth()-1);
+            b.outStats(monster_win);
+          }
+          if(b.getHealth() == 0)
+          {
+            b.setMe('.');
+          }
+          break;
+        case 'C':
+          if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
+          {
+            a.m_y+=1;
+          }
+          else if((hi.getxy(a.m_x, a.m_y + 1) == b.getMe()[0]))
+          {
+            b.setHealth(b.getHealth()-1);
+            b.outStats(monster_win);
+          }
+          if(b.getHealth() == 0)
+          {
+            b.setMe('.');
+          }
           break;
         case 'D':
           if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
-					{
+          {
             a.m_y-=1;
-					}
-					else if((hi.getxy(a.m_x, a.m_y - 1) == b.getMe()[0]))
-					{
-						b.setHealth(b.getHealth()-1);
-						b.outStats(monster_win);
-					}
-					if(b.getHealth() == 0)
-					{
-						b.setMe('.');
-					}
+          }
+          else if((hi.getxy(a.m_x, a.m_y - 1) == b.getMe()[0]))
+          {
+            b.setHealth(b.getHealth()-1);
+            b.outStats(monster_win);
+          }
+          if(b.getHealth() == 0)
+          {
+            b.setMe('.');
+          }
           // code for arrow left
-					break;
+          break;
       }
     }
   }
