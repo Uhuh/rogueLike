@@ -94,7 +94,7 @@ int main()
       getch(); // skip the [
       switch(getch())
       { // the real value
-        case 'A'
+        case 'A':
           if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
           {
             a.m_x-=1;
