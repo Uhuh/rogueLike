@@ -28,7 +28,7 @@ class map
     void build(int row, int col);
     void buildRoom(const int row, const int col, const int width, const int height);
     void outMap(WINDOW*);
-		void placeMonster(WINDOW*, const unit&);
+    void placeMonster(WINDOW*, const unit&);
     void moveMonster(unit & b);
 
 };

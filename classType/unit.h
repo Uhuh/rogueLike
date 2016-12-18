@@ -16,10 +16,10 @@ class unit
     // These are the x/y co-ordinates, we made them public because
     // we got sick of making getters/setters
     int m_x;
-		int m_y;
+    int m_y;
 
     unit(): health(10), atk(1), def(1), str(1),
-              name("Gurk"), me("@") {};
+            name("Gurk"), me("@") {};
     std::string getName() const { return name; }
     std::string getMe() const { return me; }
     int getStr() const { return str; }
