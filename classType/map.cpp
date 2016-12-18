@@ -32,10 +32,11 @@ void map::outMap(WINDOW* game_win)
   {
     for(int j = 0; j < getHeight(); j++)
     {
-      mvwprintw(game_win, i,j, "%c", getxy(i, j));
+      if(getVis(i, j))
+        mvwprintw(game_win, i,j, "%c", getxy(i, j));
     }
   }
-  
+
   wrefresh(game_win);
  // wclear(game_win);
 
