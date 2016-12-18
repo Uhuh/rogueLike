@@ -22,6 +22,17 @@ void map::build(int row, int col)
 }
 
 
+void map::setVis(int row, int col, bool vis)
+{
+  assert(row <= width && col <= height);
+  isVis[row+col*width] = vis;
+  isVis[row+1+col*width] = vis;
+  isVis[row-1+col*width] = vis;
+  isVis[row+(col+1)*width] = vis;
+  isVis[row+(col-1)*width] = vis;
+}
+
+
 void map::outMap(WINDOW* game_win)
 {
   // (Make this a function)
@@ -34,8 +45,11 @@ void map::outMap(WINDOW* game_win)
     {
       if(getVis(i, j))
         mvwprintw(game_win, i,j, "%c", getxy(i, j));
+
     }
   }
+
+
 
   wrefresh(game_win);
  // wclear(game_win);
@@ -123,10 +137,12 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
 	return;
 }
 
+
 void map::buildRoom(const int row, const int col, const int width, const int height)
 {
   assert(row + width <= getWidth() && col + height <= getHeight());
   assert(row >= 0 && col >= 0 && width > 0 && height > 0);
+
   for(int i = row; i <= width+row; i++)
   {
     getxy(i, col) = '#';
@@ -137,6 +153,7 @@ void map::buildRoom(const int row, const int col, const int width, const int hei
     getxy(row, i) = '#';
     getxy(width+row, i) = '#';
   }
+
   getxy(width+row-3, height+col) = '.';
   return;
 }
