@@ -29,11 +29,13 @@ void map::outMap(WINDOW* game_win)
   wattron(game_win, COLOR_PAIR(2));
 
   for(int i = 0; i < getWidth(); i++)
+  {
     for(int j = 0; j < getHeight(); j++)
+    {
       mvwprintw(game_win, i,j, "%c", getxy(i, j));
-
-
-
+    }
+  }
+  
   wrefresh(game_win);
  // wclear(game_win);
 
