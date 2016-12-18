@@ -84,6 +84,7 @@ int main()
     wborder(stats_win, '|', '|', '=','=','*','*','*','*');
     wborder(monster_win, '|', '|', '=','=','*','*','*','*');
 
+    //Our guy can see wherever he has gone.""
     hi.setVis(a.m_x, a.m_y, true);
 
     //outputting the map to screen.
