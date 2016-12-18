@@ -37,12 +37,13 @@ int main()
                hi.getWidth()/rand_int(2, 8), hi.getHeight()/rand_int(2, 8));
 
 
-  // So the person starts in the middle of the map.
-  int startx = hi.getWidth()/2, starty = hi.getHeight()/2;
+  // Random location for setting character. Make it a funct and check if spawn is on wall.
+  int startx = hi.getWidth()/rand_int(2, 6), starty = hi.getHeight()/rand_int(2, 6);
   int x = startx, y = starty;
 
   a.m_x = startx;
   a.m_y = starty;
+
 
   std::string name;
   std::cout << "Speak your name friend and enter: ";
@@ -52,13 +53,16 @@ int main()
   b.setName("Goblin");
   b.setMe('G');
 
+  // Setting the monsters location is a work in progress.
   b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
   b.m_y = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
+
   initscr();
   start_color();
-  // (red is the char color, black is background)
+  // Using red for the users char, green for the monster
+  // and white to make the map white.
 
-  init_pair(1,COLOR_RED, COLOR_BLACK);
+  init_pair(1, COLOR_RED, COLOR_BLACK);
   init_pair(2, COLOR_WHITE, COLOR_BLACK);
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);
 
@@ -80,6 +84,8 @@ int main()
     wborder(stats_win, '|', '|', '=','=','*','*','*','*');
     wborder(monster_win, '|', '|', '=','=','*','*','*','*');
 
+    hi.setVis(a.m_x, a.m_y, true);
+
     //outputting the map to screen.
     hi.outMap(game_win);
     hi.placeMonster(game_win, b);
@@ -88,76 +94,95 @@ int main()
     //outputting the players stats in another window.
     a.outStats(stats_win);
     b.outStats(monster_win);
-//    hi.moveMonster(b);
+
     if (getch() == '\033')
     { // if the first value is esc
       getch(); // skip the [
       switch(getch())
-      { // the real value
+      {
         case 'A':
+
           if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
           {
             a.m_x-=1;
           }
+
           else if((hi.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
           {
             b.setHealth(b.getHealth()-1);
             b.outStats(monster_win);
           }
+
           if(b.getHealth() == 0)
           {
             b.setMe('.');
           }
+
           break;
+
         case 'B':
+
           if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
           {
             a.m_x+=1;
           }
+
           else if((hi.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
           {
             b.setHealth(b.getHealth()-1);
             b.outStats(monster_win);
           }
+
           if(b.getHealth() == 0)
           {
             b.setMe('.');
           }
+
           break;
+
         case 'C':
+
           if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
           {
             a.m_y+=1;
           }
+
           else if((hi.getxy(a.m_x, a.m_y + 1) == b.getMe()[0]))
           {
             b.setHealth(b.getHealth()-1);
             b.outStats(monster_win);
           }
+
           if(b.getHealth() == 0)
           {
             b.setMe('.');
           }
+
           break;
+
         case 'D':
+
           if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
           {
             a.m_y-=1;
           }
+
           else if((hi.getxy(a.m_x, a.m_y - 1) == b.getMe()[0]))
           {
             b.setHealth(b.getHealth()-1);
             b.outStats(monster_win);
           }
+
           if(b.getHealth() == 0)
           {
             b.setMe('.');
           }
-          // code for arrow left
+
           break;
       }
     }
   }
+
   endwin();
   return 0;
 }
