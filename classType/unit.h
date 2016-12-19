@@ -17,9 +17,9 @@ class unit
     // we got sick of making getters/setters
     int m_x;
     int m_y;
-
+    int visionLimit;
     unit(): health(10), atk(1), def(1), str(1),
-            name("Gurk"), me("@") {};
+            name("Gurk"), me("@"), visionLimit(6) {};
     std::string getName() const { return name; }
     std::string getMe() const { return me; }
     int getStr() const { return str; }
