@@ -68,62 +68,60 @@ void map::outUser(WINDOW* game_win, const unit & a)
   return;
 }
 
-bool monsterVision(unit& a, unit& b)
+bool map::monsterVision(unit& a, unit& b)
 {
-  for(i = 1; i < b.visionLimit; i++)
+  for(int i = 1; i < b.visionLimit; i++)
   {
-    if(getxy(x+i, y) == a.getMe())
+    if(getxy(b.m_x+i, b.m_y) == a.getMe()[0])
     {
       return true;
     }
-    else if (getxy(x, y+i) == a.getMe())
+    else if (getxy(b.m_x, b.m_y+i) == a.getMe()[0])
     {
       return true;
     }
-    else if (getxy(x-i, y) == a.getMe())
+    else if (getxy(b.m_x-i, b.m_y) == a.getMe()[0])
     {
       return true;
     }
-    else if (getxy(x, y-i) == a.getMe())
+    else if (getxy(b.m_x, b.m_y-i) == a.getMe()[0])
     {
       return true;
-    }
-    else
-    {
-      return false;
     }
   }
+  return false;
 }
 
-void map::moveMonster(unit & b)
+void map::moveMonster(unit & a,  unit & b)
 {
-  if(monsterVision())
+  if(monsterVision(a, b))
   {
-    if((b.m_x - a.m_x) >= 0 && 
-        (b.m_y - a.m_y) >= 0) 
+    if((b.m_x - a.m_x) >= 0 &&
+        (b.m_y - a.m_y) >= 0)
     {
       b.m_x -= 1;
       b.m_y -= 1;
     }
-    else if((b.m_x - a.m_x) >= 0 && 
-        (b.m_y - a.m_y) <= 0) 
+    else if((b.m_x - a.m_x) >= 0 &&
+        (b.m_y - a.m_y) <= 0)
     {
       b.m_x -= 1;
       b.m_y += 1;
     }
-    else if((b.m_x - a.m_x) <= 0 && 
-        (b.m_y - a.m_y) >= 0) 
+    else if((b.m_x - a.m_x) <= 0 &&
+        (b.m_y - a.m_y) >= 0)
     {
       b.m_x += 1;
       b.m_y -= 1;
     }
-    else if((b.m_x - a.m_x) <= 0 && 
-        (b.m_y - a.m_y) <= 0) 
+    else if((b.m_x - a.m_x) <= 0 &&
+        (b.m_y - a.m_y) <= 0)
     {
       b.m_x += 1;
       b.m_y += 1;
     }
   }
+
   else
   {
     // Something that isn't rand()
@@ -140,7 +138,9 @@ void map::moveMonster(unit & b)
         if((getxy( b.m_x - 1, b.m_y) == '.'))
         {
           b.m_x-=1;
-          getxy(b.m_x + 1, b.m_y) = '.';
+
+            getxy(b.m_x + 1, b.m_y) = '.';
+          
         }
         break;
       case 2:
@@ -148,7 +148,9 @@ void map::moveMonster(unit & b)
         if((getxy( b.m_x + 1, b.m_y) == '.'))
         {
           b.m_x+=1;
-          getxy(b.m_x - 1, b.m_y) = '.';
+
+            getxy(b.m_x - 1, b.m_y) = '.';
+
         }
 
         break;
@@ -157,7 +159,9 @@ void map::moveMonster(unit & b)
         if((getxy( b.m_x , b.m_y + 1) == '.'))
         {
           b.m_y+=1;
-          getxy(b.m_x, b.m_y - 1) = '.';
+
+            getxy(b.m_x, b.m_y - 1) = '.';
+
         }
         break;
       case 4:
@@ -165,7 +169,9 @@ void map::moveMonster(unit & b)
         if((getxy( b.m_x, b.m_y - 1) == '.'))
         {
           b.m_y-=1;
-          getxy(b.m_x, b.m_y + 1) = '.';
+
+            getxy(b.m_x, b.m_y + 1) = '.';
+
         }
         break;
     }
