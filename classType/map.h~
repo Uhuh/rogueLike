@@ -35,7 +35,6 @@ class map
     void outMap(WINDOW*);
     void placeMonster(WINDOW*, const unit&);
     void moveMonster(unit & b);
-    bool monsterVision(unit& a, unit& b);
 
 };
 
