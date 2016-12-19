@@ -34,7 +34,7 @@ class map
     void buildRoom(const int row, const int col, const int width, const int height);
     void outMap(WINDOW*);
     void placeMonster(WINDOW*, const unit&);
-    void moveMonster(unit & b);
+    void moveMonster(unit & a, unit & b);
     bool monsterVision(unit& a, unit& b);
 
 };
