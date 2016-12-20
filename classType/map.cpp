@@ -62,15 +62,14 @@ void map::outUser(WINDOW* game_win, const unit & a)
   wattron(game_win, COLOR_PAIR(1));
   //Outputting our guys symbol.
   mvwprintw(game_win, a.m_x, a.m_y, a.getMe().c_str());
-
+  getxy(a.m_x, a.m_y) = a.getMe()[0];
   wrefresh(game_win);
-  // wclear(game_win);
   return;
 }
 
 bool map::monsterVision(unit& a, unit& b)
 {
-  for(int i = 1; i < b.visionLimit; i++)
+  for(int i = 1; i < 6; i++)
   {
     if(getxy(b.m_x+i, b.m_y) == a.getMe()[0])
     {
@@ -89,36 +88,33 @@ bool map::monsterVision(unit& a, unit& b)
       return true;
     }
   }
+  // If the for loops done, we haven't found the user. So false for we can't see him
   return false;
 }
 
 void map::moveMonster(unit & a,  unit & b)
 {
   if(monsterVision(a, b))
-  {
-    if((b.m_x - a.m_x) >= 0 &&
-        (b.m_y - a.m_y) >= 0)
+  { // Checking if the monster is lower than the user.
+    if((b.m_x - a.m_x) >= 0)
     {
       b.m_x -= 1;
-      b.m_y -= 1;
+      getxy(b.m_x + 1, b.m_y) = '.';
     }
-    else if((b.m_x - a.m_x) >= 0 &&
-        (b.m_y - a.m_y) <= 0)
-    {
-      b.m_x -= 1;
-      b.m_y += 1;
-    }
-    else if((b.m_x - a.m_x) <= 0 &&
-        (b.m_y - a.m_y) >= 0)
-    {
+    else if((b.m_x - a.m_x) <= 0)
+    {// Checking if the monster is south west of user.
       b.m_x += 1;
-      b.m_y -= 1;
+      getxy(b.m_x - 1, b.m_y) = '.';
     }
-    else if((b.m_x - a.m_x) <= 0 &&
-        (b.m_y - a.m_y) <= 0)
-    {
-      b.m_x += 1;
+    else if((b.m_y - a.m_y) >= 0)
+    {// Checking if monster is north east of user.
+      b.m_y -= 1;
+      getxy(b.m_x, b.m_y + 1) = '.';
+    }
+    else if((b.m_y - a.m_y) <= 0)
+    {//And checking if monster is south east
       b.m_y += 1;
+      getxy(b.m_x, b.m_y-1) = '.';
     }
   }
 
@@ -140,7 +136,7 @@ void map::moveMonster(unit & a,  unit & b)
           b.m_x-=1;
 
             getxy(b.m_x + 1, b.m_y) = '.';
-          
+
         }
         break;
       case 2:
@@ -193,7 +189,10 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
   {
     getxy(b.m_x, b.m_y) = b.getMe()[0];
     wattron(game_win, COLOR_PAIR(3));
-    mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
+    // Using this, if the monster is in the area that the user has found.
+    if(getVis(b.m_x, b.m_y))
+      mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
+
     wrefresh(game_win);
   }
 

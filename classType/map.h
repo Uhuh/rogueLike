@@ -20,8 +20,8 @@ class map
     map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'), isVis(wd*ht, false){}
 
 
-    const char& getxy(int row,int col) const { assert(row <= width && col <= height); return data[row+col*width]; }
-    char& getxy(int row,int col) { assert(row <= width && col <= height); return data[row+col*width]; }
+    const char& getxy(int row,int col) const { /*assert(row <= width && col <= height);*/ return data[row+col*width]; }
+    char& getxy(int row,int col) { /*assert(row <= width && col <= height);*/ return data[row+col*width]; }
 
     const bool getVis(int row,int col) const { assert(row <= width && col <= height); return isVis[row+col*width]; }
     void setVis(int row,int col, bool vis);
