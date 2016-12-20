@@ -24,7 +24,7 @@ void unit::outStats(WINDOW *stats_win)
   mvwprintw(stats_win, 3, 1, "Atk: %i", getAtk());
   mvwprintw(stats_win, 4, 1, "Def: %i", getDef());
   mvwprintw(stats_win, 5, 1, "Str: %i", getStr());
-
+  
   wrefresh(stats_win);
   wclear(stats_win);
 
