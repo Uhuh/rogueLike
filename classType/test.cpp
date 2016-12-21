@@ -40,10 +40,9 @@ int main()
   // Random location for setting character. Make it a funct and check if spawn is on wall.
   int startx = hi.getWidth()/rand_int(2, 6), starty = hi.getHeight()/rand_int(2, 6);
   int x = startx, y = starty;
-
+  a.setMe('@');
   a.m_x = startx;
   a.m_y = starty;
-
 
   std::string name;
   std::cout << "Speak your name friend and enter: ";
@@ -54,9 +53,9 @@ int main()
   b.setMe('G');
 
   // Setting the monsters location is a work in progress.
-  b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
+  /*b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
   b.m_y = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
-
+*/
   initscr();
   start_color();
   // Using red for the users char, green for the monster
@@ -91,7 +90,7 @@ int main()
     hi.outMap(game_win);
     hi.placeMonster(game_win, b);
     hi.outUser(game_win, a);
-
+    hi.moveMonster(a, b);
     //outputting the players stats in another window.
     a.outStats(stats_win);
     b.outStats(monster_win);
@@ -106,6 +105,7 @@ int main()
           if((hi.getxy(a.m_x - 1, a.m_y) == '.'))
           {
             a.m_x-=1;
+            hi.getxy(a.m_x+1, a.m_y) = '.';
           }
 
           else if((hi.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
@@ -126,6 +126,8 @@ int main()
           if((hi.getxy( a.m_x + 1, a.m_y) == '.'))
           {
             a.m_x+=1;
+            hi.getxy(a.m_x-1, a.m_y) = '.';
+
           }
 
           else if((hi.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
@@ -146,6 +148,8 @@ int main()
           if((hi.getxy( a.m_x , a.m_y + 1) == '.'))
           {
             a.m_y+=1;
+            hi.getxy(a.m_x, a.m_y-1) = '.';
+
           }
 
           else if((hi.getxy(a.m_x, a.m_y + 1) == b.getMe()[0]))
@@ -166,6 +170,8 @@ int main()
           if((hi.getxy( a.m_x, a.m_y - 1) == '.'))
           {
             a.m_y-=1;
+            hi.getxy(a.m_x, a.m_y+1) = '.';
+
           }
 
           else if((hi.getxy(a.m_x, a.m_y - 1) == b.getMe()[0]))

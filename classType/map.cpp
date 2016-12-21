@@ -52,7 +52,7 @@ void map::outMap(WINDOW* game_win)
 
 
   wrefresh(game_win);
- // wclear(game_win);
+  // wclear(game_win);
 
   return;
 }
@@ -62,56 +62,115 @@ void map::outUser(WINDOW* game_win, const unit & a)
   wattron(game_win, COLOR_PAIR(1));
   //Outputting our guys symbol.
   mvwprintw(game_win, a.m_x, a.m_y, a.getMe().c_str());
-
+  getxy(a.m_x, a.m_y) = a.getMe()[0];
   wrefresh(game_win);
- // wclear(game_win);
   return;
 }
 
-void map::moveMonster(unit & b)
+bool map::monsterVision(unit& a, unit& b)
 {
-  // Something that isn't rand()
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<> dis(1, 4);
-
-  // Picks a number from 1 to 4.
-  switch(dis(gen))
+  for(int i = 1; i < 6; i++)
   {
-    case 1:
-    // We need to stop the monster from leaving a trail.
-    // So replace the last spot they were in with a dot (' . ')
-      if((getxy( b.m_x - 1, b.m_y) == '.'))
-      {
-        b.m_x-=1;
-        getxy(b.m_x + 1, b.m_y) = '.';
-      }
-      break;
-    case 2:
+    if(getxy(b.m_x+i, b.m_y) == a.getMe()[0])
+    {
+      return true;
+    }
+    else if (getxy(b.m_x, b.m_y+i) == a.getMe()[0])
+    {
+      return true;
+    }
+    else if (getxy(b.m_x-i, b.m_y) == a.getMe()[0])
+    {
+      return true;
+    }
+    else if (getxy(b.m_x, b.m_y-i) == a.getMe()[0])
+    {
+      return true;
+    }
+  }
+  // If the for loops done, we haven't found the user. So false for we can't see him
+  return false;
+}
 
-      if((getxy( b.m_x + 1, b.m_y) == '.'))
-      {
-        b.m_x+=1;
-        getxy(b.m_x - 1, b.m_y) = '.';
-      }
+void map::moveMonster(unit & a,  unit & b)
+{
+  if(monsterVision(a, b))
+  { // Checking if the monster is lower than the user.
+    if((b.m_x - a.m_x) >= 0)
+    {
+      b.m_x -= 1;
+      getxy(b.m_x + 1, b.m_y) = '.';
+    }
+    else if((b.m_x - a.m_x) <= 0)
+    {// Checking if the monster is south west of user.
+      b.m_x += 1;
+      getxy(b.m_x - 1, b.m_y) = '.';
+    }
+    else if((b.m_y - a.m_y) >= 0)
+    {// Checking if monster is north east of user.
+      b.m_y -= 1;
+      getxy(b.m_x, b.m_y + 1) = '.';
+    }
+    else if((b.m_y - a.m_y) <= 0)
+    {//And checking if monster is south east
+      b.m_y += 1;
+      getxy(b.m_x, b.m_y-1) = '.';
+    }
+  }
 
-      break;
-    case 3:
+  else
+  {
+    // Something that isn't rand()
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(1, 4);
 
-      if((getxy( b.m_x , b.m_y + 1) == '.'))
-      {
-        b.m_y+=1;
-        getxy(b.m_x, b.m_y - 1) = '.';
-      }
-      break;
-    case 4:
+    // Picks a number from 1 to 4.
+    switch(dis(gen))
+    {
+      case 1:
+        // We need to stop the monster from leaving a trail.
+        // So replace the last spot they were in with a dot (' . ')
+        if((getxy( b.m_x - 1, b.m_y) == '.'))
+        {
+          b.m_x-=1;
 
-      if((getxy( b.m_x, b.m_y - 1) == '.'))
-      {
-        b.m_y-=1;
-        getxy(b.m_x, b.m_y + 1) = '.';
-      }
-      break;
+            getxy(b.m_x + 1, b.m_y) = '.';
+
+        }
+        break;
+      case 2:
+
+        if((getxy( b.m_x + 1, b.m_y) == '.'))
+        {
+          b.m_x+=1;
+
+            getxy(b.m_x - 1, b.m_y) = '.';
+
+        }
+
+        break;
+      case 3:
+
+        if((getxy( b.m_x , b.m_y + 1) == '.'))
+        {
+          b.m_y+=1;
+
+            getxy(b.m_x, b.m_y - 1) = '.';
+
+        }
+        break;
+      case 4:
+
+        if((getxy( b.m_x, b.m_y - 1) == '.'))
+        {
+          b.m_y-=1;
+
+            getxy(b.m_x, b.m_y + 1) = '.';
+
+        }
+        break;
+    }
   }
 
   return;
@@ -123,18 +182,21 @@ void map::moveMonster(unit & b)
 void map::placeMonster(WINDOW* game_win, const unit& b)
 {
   /*
-    Add checks to make sure we don't place in a wall or on the user, etc
-  */
+     Add checks to make sure we don't place in a wall or on the user, etc
+     */
 
   if(getxy(b.m_x, b.m_y) != '#')
   {
     getxy(b.m_x, b.m_y) = b.getMe()[0];
     wattron(game_win, COLOR_PAIR(3));
-    mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
+    // Using this, if the monster is in the area that the user has found.
+    if(getVis(b.m_x, b.m_y))
+      mvwprintw(game_win, b.m_x, b.m_y, b.getMe().c_str());
+
     wrefresh(game_win);
   }
 
-	return;
+  return;
 }
 
 

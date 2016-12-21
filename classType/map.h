@@ -20,8 +20,8 @@ class map
     map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'), isVis(wd*ht, false){}
 
 
-    const char& getxy(int row,int col) const { assert(row <= width && col <= height); return data[row+col*width]; }
-    char& getxy(int row,int col) { assert(row <= width && col <= height); return data[row+col*width]; }
+    const char& getxy(int row,int col) const { /*assert(row <= width && col <= height);*/ return data[row+col*width]; }
+    char& getxy(int row,int col) { /*assert(row <= width && col <= height);*/ return data[row+col*width]; }
 
     const bool getVis(int row,int col) const { assert(row <= width && col <= height); return isVis[row+col*width]; }
     void setVis(int row,int col, bool vis);
@@ -34,7 +34,8 @@ class map
     void buildRoom(const int row, const int col, const int width, const int height);
     void outMap(WINDOW*);
     void placeMonster(WINDOW*, const unit&);
-    void moveMonster(unit & b);
+    void moveMonster(unit & a, unit & b);
+    bool monsterVision(unit& a, unit& b);
 
 };
 
