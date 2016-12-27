@@ -53,9 +53,9 @@ int main()
   b.setMe('G');
 
   // Setting the monsters location is a work in progress.
-  /*b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
+  b.m_x = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
   b.m_y = (hi.getWidth()-(hi.getWidth()/2)/rand_int(2, 8));
-*/
+
   initscr();
   start_color();
   // Using red for the users char, green for the monster
