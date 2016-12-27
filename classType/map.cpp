@@ -101,16 +101,19 @@ void map::moveMonster(unit & a,  unit & b)
       b.m_x -= 1;
       getxy(b.m_x + 1, b.m_y) = '.';
     }
+
     else if((b.m_x - a.m_x) <= 0)
     {// Checking if the monster is south west of user.
       b.m_x += 1;
       getxy(b.m_x - 1, b.m_y) = '.';
     }
+
     else if((b.m_y - a.m_y) >= 0)
     {// Checking if monster is north east of user.
       b.m_y -= 1;
       getxy(b.m_x, b.m_y + 1) = '.';
     }
+
     else if((b.m_y - a.m_y) <= 0)
     {//And checking if monster is south east
       b.m_y += 1;
@@ -134,8 +137,7 @@ void map::moveMonster(unit & a,  unit & b)
         if((getxy( b.m_x - 1, b.m_y) == '.'))
         {
           b.m_x-=1;
-
-            getxy(b.m_x + 1, b.m_y) = '.';
+          getxy(b.m_x + 1, b.m_y) = '.';
 
         }
         break;
@@ -144,8 +146,7 @@ void map::moveMonster(unit & a,  unit & b)
         if((getxy( b.m_x + 1, b.m_y) == '.'))
         {
           b.m_x+=1;
-
-            getxy(b.m_x - 1, b.m_y) = '.';
+          getxy(b.m_x - 1, b.m_y) = '.';
 
         }
 
@@ -155,8 +156,7 @@ void map::moveMonster(unit & a,  unit & b)
         if((getxy( b.m_x , b.m_y + 1) == '.'))
         {
           b.m_y+=1;
-
-            getxy(b.m_x, b.m_y - 1) = '.';
+          getxy(b.m_x, b.m_y - 1) = '.';
 
         }
         break;
@@ -165,9 +165,7 @@ void map::moveMonster(unit & a,  unit & b)
         if((getxy( b.m_x, b.m_y - 1) == '.'))
         {
           b.m_y-=1;
-
-            getxy(b.m_x, b.m_y + 1) = '.';
-
+          getxy(b.m_x, b.m_y + 1) = '.';
         }
         break;
     }

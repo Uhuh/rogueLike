@@ -17,7 +17,7 @@ class map
     int width, height;
 
   public:
-    map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'), isVis(wd*ht, false){}
+    map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'), isVis(wd*ht, true){}
 
 
     const char& getxy(int row,int col) const { /*assert(row <= width && col <= height);*/ return data[row+col*width]; }
