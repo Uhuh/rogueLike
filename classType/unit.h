@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <ncurses.h>
+class map;
+
 
 class unit
 {
@@ -20,9 +22,11 @@ class unit
     int visionLimit;
     unit(): health(10), atk(1), def(1), str(1),
             name("Gurk"), me("@"), visionLimit(6) {};
-            
+
     std::string getName() const { return name; }
     std::string getMe() const { return me; }
+
+    void spawn(const map & area);
 
     int getStr() const { return str; }
     int getDef() const { return def; }
