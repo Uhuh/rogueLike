@@ -16,26 +16,26 @@ class map
     std::vector<bool> isVis;
 
 
-    int width, height;
+    int m_row, m_col;
 
   public:
-    map(int wd, int ht): width(wd), height(ht), data(wd*ht, '.'), isVis(wd*ht, true){}
+    map(int rw, int cl): m_row(rw), m_col(cl), data(rw*cl, '.'), isVis(rw*cl, true){}
 
     std::map<std::tuple<int, int>, std::tuple<int, int>> rooms;
 
 
-    const char& getxy(int row,int col) const { return data[row+col*width]; }
-    char& getxy(int row,int col) { return data[row+col*width]; }
+    const char& getxy(int row,int col) const { return data[row+col*m_row]; }
+    char& getxy(int row,int col) { return data[row+col*m_row]; }
 
-    const bool getVis(int row,int col) const { assert(row <= width && col <= height); return isVis[row+col*width]; }
+    const bool getVis(int row,int col) const { assert(row <= m_row && col <= m_col); return isVis[row+col*m_row]; }
     void setVis(int row,int col, bool vis);
 
-    int getWidth() const { return width; }
-    int getHeight() const { return height; }
+    int getRow() const { return m_row; }
+    int getCol() const { return m_col; }
 
     void outUser(WINDOW* game_win, const unit & a);
     void build(int row, int col);
-    void buildRoom(const int row, const int col, const int width, const int height);
+    void buildRoom(const int row, const int col, const int m_row, const int m_col);
     void outMap(WINDOW*);
     void placeMonster(WINDOW*, const unit&);
     void moveMonster(unit & a, unit & b);

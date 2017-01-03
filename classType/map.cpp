@@ -24,12 +24,12 @@ void map::build(int row, int col)
 
 void map::setVis(int row, int col, bool vis)
 {
-  assert(row <= width && col <= height);
-  isVis[row+col*width] = vis;
-  isVis[row+1+col*width] = vis;
-  isVis[row-1+col*width] = vis;
-  isVis[row+(col+1)*width] = vis;
-  isVis[row+(col-1)*width] = vis;
+  assert(row <= m_row && col <= m_col);
+  isVis[row+col*m_row] = vis;
+  isVis[row+1+col*m_row] = vis;
+  isVis[row-1+col*m_row] = vis;
+  isVis[row+(col+1)*m_row] = vis;
+  isVis[row+(col-1)*m_row] = vis;
 }
 
 
@@ -39,9 +39,9 @@ void map::outMap(WINDOW* game_win)
   // Coloring the map white on black.
   wattron(game_win, COLOR_PAIR(2));
 
-  for(int i = 0; i < getWidth(); i++)
+  for(int i = 0; i < getRow(); i++)
   {
-    for(int j = 0; j < getHeight(); j++)
+    for(int j = 0; j < getCol(); j++)
     {
       if(getVis(i, j))
         mvwprintw(game_win, i,j, "%c", getxy(i, j));
@@ -198,94 +198,47 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
 }
 
 
-void map::buildRoom(const int row, const int col, const int width, const int height)
+void map::buildRoom(const int row, const int col, const int m_row, const int m_col)
 {
-  assert(row + width <= getWidth() && col + height <= getHeight());
-  assert(row >= 0 && col >= 0 && width > 0 && height > 0);
+  assert(row + m_row <= getRow() && col + m_col <= getCol());
+  assert(row >= 0 && col >= 0 && m_row > 0 && m_col > 0);
   bool test = false;
-
-
-
-
-  if(!rooms.empty())
-    {
-      for(auto it: rooms)
-      {
-        for(auto iz: rooms)
-        {
-
-          if(std::get<0>(it.first) == std::get<0>(iz.first))
-          {
-            if(std::get<0>(it.first) + std::get<1>(it.second)
-               > std::get<1>(iz.second) + std::get<0>(iz.first))
-            {
-              buildRoom(getWidth()/rand_int(2,  8),
-                        getHeight()/rand_int(2, 8),
-                        getWidth()/rand_int(2, 8),
-                        getHeight()/rand_int(2, 8));
-              return;
-            }
-          }
-
-          else if(std::get<1>(it.first) == std::get<1>(iz.first))
-          {
-            if(std::get<0>(it.second) + std::get<1>(it.first)
-               > std::get<1>(iz.first) + std::get<0>(iz.second))
-            {
-              buildRoom(getWidth()/rand_int(2,  8),
-                        getHeight()/rand_int(2, 8),
-                        getWidth()/rand_int(2, 8),
-                        getHeight()/rand_int(2, 8));
-              return;
-            }
-
-          }
-
-        }
-      }
-    }
-    rooms[std::make_pair(row, col)] = std::make_pair(width, height);
-
-
-
-
-
 /*
-  for(int i = 1; i < row; i++)
+  for(int i = 1; i < (getCol() - row); i++)
   {
     if(getxy(col, row + i) == '#' || getxy(col, row - i) == '#')
     {
-      buildRoom(getWidth()/rand_int(2, 8),
-                getHeight()/rand_int(2, 8),
-                getWidth()/rand_int(2, 8),
-                getHeight()/rand_int(2, 8));
+      buildRoom(getRow()/rand_int(2, 8),
+                getCol()/rand_int(2, 8),
+                getRow()/rand_int(2, 8),
+                getCol()/rand_int(2, 8));
       return;
     }
   }
 
-  for(int i = 1; i < col; i++)
+  for(int i = 1; i < (getRow() - col); i++)
   {
     if(getxy(col + 1, row) == '#' || getxy(col - i, row) == '#')
     {
-      buildRoom(getWidth()/rand_int(2, 8),
-                getHeight()/rand_int(2, 8),
-                getWidth()/rand_int(2, 8),
-                getHeight()/rand_int(2, 8));
+      buildRoom(getRow()/rand_int(2, 8),
+                getCol()/rand_int(2, 8),
+                getRow()/rand_int(2, 8),
+                getCol()/rand_int(2, 8));
       return;
     }
   }*/
 
-  for(int i = row; i <= width+row; i++)
+  for(int i = row; i <= m_row+row; i++)
   {
     getxy(i, col) = '#';
-    getxy(i, height+col) = '#';
+    getxy(i, m_col+col) = '#';
   }
-  for(int i = col; i <= height+col; i++)
+  for(int i = col; i <= m_col+col; i++)
   {
     getxy(row, i) = '#';
-    getxy(width+row, i) = '#';
+    getxy(m_row+row, i) = '#';
   }
 
-  getxy(width+row-3, height+col) = '.';
+  getxy(m_row+row-3, m_col+col) = '.';
   return;
 }
