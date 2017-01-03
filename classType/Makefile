@@ -1,3 +1,3 @@
 
 program:
-	g++ -std=c++11 *.cpp -lncurses -o b
+	g++ -g -std=c++11 *.cpp -lncurses -o b
