@@ -15,13 +15,11 @@ class map
     std::vector<char> data;
     std::vector<bool> isVis;
 
-
+    // m_row is also the width of the vector.
     int m_row, m_col;
 
   public:
     map(int rw, int cl): m_row(rw), m_col(cl), data(rw*cl, '.'), isVis(rw*cl, true){}
-
-    std::map<std::tuple<int, int>, std::tuple<int, int>> rooms;
 
 
     const char& getxy(int row,int col) const { return data[row+col*m_row]; }
