@@ -13,22 +13,22 @@ int main()
   //going to be using a base class for both players and monster
   //just haven't changed class name.
 
-  //constructor => map(width, height)
+  //constructor => map(rows, cols)
   //int 1 = row, int 2 = col
   map world(40, 60);
-  world.build(world.getWidth()-1, world.getHeight()-1);
+  world.build(world.getRow()-1, world.getCol()-1);
 
   //Check the rand.cpp for how this is made.
   // Trying out how to make the room by random.
-  world.buildRoom(world.getWidth()/rand_int(2, 8),
-                  world.getHeight()/rand_int(2, 8),
-                  world.getWidth()/rand_int(2, 8),
-                  world.getHeight()/rand_int(2, 8));
+  world.buildRoom(world.getRow()/rand_int(2, 8),
+                  world.getCol()/rand_int(2, 8),
+                  world.getRow()/rand_int(2, 8),
+                  world.getCol()/rand_int(2, 8));
 
-  world.buildRoom(world.getWidth()/rand_int(2, 8),
-                  world.getHeight()/rand_int(2, 8),
-                  world.getWidth()/rand_int(2, 8),
-                  world.getHeight()/rand_int(2, 8));
+  world.buildRoom(world.getRow()/rand_int(2, 8),
+                  world.getCol()/rand_int(2, 8),
+                  world.getRow()/rand_int(2, 8),
+                  world.getCol()/rand_int(2, 8));
 
 
 
@@ -62,9 +62,9 @@ int main()
   WINDOW *stats_win;
   WINDOW *monster_win;
 
-  game_win = newwin(world.getWidth(), world.getHeight(), 0, 0);
-  stats_win = newwin(10, 20, 0, world.getHeight()+5);
-  monster_win = newwin(10, 20, 30, world.getHeight()+5);
+  game_win = newwin(world.getRow(), world.getCol(), 0, 0);
+  stats_win = newwin(10, 20, 0, world.getCol()+5);
+  monster_win = newwin(10, 20, 30, world.getCol()+5);
 
   while(true)
   {
