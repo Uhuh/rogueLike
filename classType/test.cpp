@@ -65,6 +65,7 @@ int main()
   game_win = newwin(world.getRow(), world.getCol(), 0, 0);
   stats_win = newwin(10, 20, 0, world.getCol()+5);
   monster_win = newwin(10, 20, 30, world.getCol()+5);
+  keypad(game_win, TRUE);
 
   while(true)
   {
@@ -85,99 +86,8 @@ int main()
     a.outStats(stats_win);
     b.outStats(monster_win);
 
-    if (getch() == '\033')
-    { // if the first value is esc
-      getch(); // skip the [
-      switch(getch())
-      {
-        case 'A':
+    a.moveUnit(game_win, monster_win, b, world);
 
-          if((world.getxy(a.m_x - 1, a.m_y) == '.'))
-          {
-            a.m_x-=1;
-            world.getxy(a.m_x+1, a.m_y) = '.';
-          }
-
-          else if((world.getxy(a.m_x - 1, a.m_y) == b.getMe()[0]))
-          {
-            b.setHealth(b.getHealth()-1);
-            b.outStats(monster_win);
-          }
-
-          if(b.getHealth() == 0)
-          {
-            b.setMe('.');
-          }
-
-          break;
-
-        case 'B':
-
-          if((world.getxy( a.m_x + 1, a.m_y) == '.'))
-          {
-            a.m_x+=1;
-            world.getxy(a.m_x-1, a.m_y) = '.';
-
-          }
-
-          else if((world.getxy(a.m_x + 1, a.m_y) == b.getMe()[0]))
-          {
-            b.setHealth(b.getHealth()-1);
-            b.outStats(monster_win);
-          }
-
-          if(b.getHealth() == 0)
-          {
-            b.setMe('.');
-          }
-
-          break;
-
-        case 'C':
-
-          if((world.getxy( a.m_x , a.m_y + 1) == '.'))
-          {
-            a.m_y+=1;
-            world.getxy(a.m_x, a.m_y-1) = '.';
-
-          }
-
-          else if((world.getxy(a.m_x, a.m_y + 1) == b.getMe()[0]))
-          {
-            b.setHealth(b.getHealth()-1);
-            b.outStats(monster_win);
-          }
-
-          if(b.getHealth() == 0)
-          {
-            b.setMe('.');
-          }
-
-          break;
-
-        case 'D':
-
-          if((world.getxy( a.m_x, a.m_y - 1) == '.'))
-          {
-            a.m_y-=1;
-            world.getxy(a.m_x, a.m_y+1) = '.';
-
-          }
-
-          else if((world.getxy(a.m_x, a.m_y - 1) == b.getMe()[0]))
-          {
-            b.setHealth(b.getHealth()-1);
-            b.outStats(monster_win);
-          }
-
-          if(b.getHealth() == 0)
-          {
-            b.setMe('.');
-          }
-
-          break;
-      }
-    }
   }
 
   endwin();
