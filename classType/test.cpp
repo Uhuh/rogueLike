@@ -85,7 +85,7 @@ int main()
     //outputting the players stats in another window.
     a.outStats(stats_win);
     b.outStats(monster_win);
-
+    //Reads user input and moves the unit.
     a.moveUnit(game_win, monster_win, b, world);
 
   }
