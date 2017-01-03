@@ -26,6 +26,7 @@ class unit
     std::string getName() const { return name; }
     std::string getMe() const { return me; }
 
+    void moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &world);
     void spawn(const map & area);
 
     int getStr() const { return str; }

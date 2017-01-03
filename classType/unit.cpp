@@ -41,3 +41,96 @@ void unit::spawn(const map & area)
   }while(area.getxy(m_x, m_y) != '.');
   return;
 }
+
+
+
+void unit::moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &world)
+{
+  //read in user input for movement.
+  const auto key = wgetch(game_win);
+  switch(key)
+  {
+    case KEY_UP:
+      if((world.getxy(m_x - 1, m_y) == '.'))
+      {
+        m_x-=1;
+        world.getxy(m_x+1, m_y) = '.';
+      }
+
+      else if((world.getxy(m_x - 1, m_y) == monster.getMe()[0]))
+      {
+        monster.setHealth(monster.getHealth()-1);
+        monster.outStats(monster_win);
+      }
+
+      if(monster.getHealth() == 0)
+      {
+        monster.setMe('.');
+      }
+      break;
+
+    case KEY_DOWN:
+      if((world.getxy(m_x + 1, m_y) == '.'))
+      {
+        m_x+=1;
+        world.getxy(m_x-1, m_y) = '.';
+
+      }
+
+      else if((world.getxy(m_x + 1, m_y) == monster.getMe()[0]))
+      {
+        monster.setHealth(monster.getHealth()-1);
+        monster.outStats(monster_win);
+      }
+
+      if(monster.getHealth() == 0)
+      {
+        monster.setMe('.');
+      }
+
+      break;
+
+    case KEY_LEFT:
+      if((world.getxy(m_x, m_y - 1) == '.'))
+      {
+        m_y-=1;
+        world.getxy(m_x, m_y+1) = '.';
+
+      }
+
+      else if((world.getxy(m_x, m_y - 1) == monster.getMe()[0]))
+      {
+        monster.setHealth(monster.getHealth()-1);
+        monster.outStats(monster_win);
+      }
+
+      if(monster.getHealth() == 0)
+      {
+        monster.setMe('.');
+      }
+
+      break;
+
+    case KEY_RIGHT:
+      if((world.getxy(m_x , m_y + 1) == '.'))
+      {
+        m_y+=1;
+        world.getxy(m_x, m_y-1) = '.';
+
+      }
+
+      else if((world.getxy(m_x, m_y + 1) == monster.getMe()[0]))
+      {
+        monster.setHealth(monster.getHealth()-1);
+        monster.outStats(monster_win);
+      }
+
+      if(monster.getHealth() == 0)
+      {
+        monster.setMe('.');
+      }
+
+      break;
+  }
+  return;
+}
