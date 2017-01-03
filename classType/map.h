@@ -13,6 +13,8 @@ class map
 {
   private:
     std::vector<char> data;
+    //isVis is a vector that marks where the user has traveled on the map
+    //so we can output the areas they've been too.
     std::vector<bool> isVis;
 
     // m_row is also the width of the vector.
