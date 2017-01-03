@@ -123,13 +123,9 @@ void map::moveMonster(unit & a,  unit & b)
 
   else
   {
-    // Something that isn't rand()
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(1, 4);
 
     // Picks a number from 1 to 4.
-    switch(dis(gen))
+    switch(rand_int(1, 4))
     {
       case 1:
         // We need to stop the monster from leaving a trail.
@@ -198,13 +194,14 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
 }
 
 
-void map::buildRoom(const int row, const int col, const int m_row, const int m_col)
+void map::buildRoom(const int row, const int col, const int rRow, const int rCol)
 {
-  assert(row + m_row <= getRow() && col + m_col <= getCol());
-  assert(row >= 0 && col >= 0 && m_row > 0 && m_col > 0);
+  assert(row + rRow <= getRow() && col + rCol <= getCol());
+  assert(row >= 0 && col >= 0 && rRow > 0 && rCol > 0);
   bool test = false;
-/*
-  for(int i = 1; i < (getCol() - row); i++)
+  int i = 0;
+  /*
+  while((row - i) > 0 && (row + i) < getRow())
   {
     if(getxy(col, row + i) == '#' || getxy(col, row - i) == '#')
     {
@@ -214,11 +211,12 @@ void map::buildRoom(const int row, const int col, const int m_row, const int m_c
                 getCol()/rand_int(2, 8));
       return;
     }
+    i++;
   }
-
-  for(int i = 1; i < (getRow() - col); i++)
+  i = 0;
+  while((col - i) > 0 && (col + i) < getCol())
   {
-    if(getxy(col + 1, row) == '#' || getxy(col - i, row) == '#')
+    if(getxy(col + i, row) == '#' || getxy(col - i, row) == '#')
     {
       buildRoom(getRow()/rand_int(2, 8),
                 getCol()/rand_int(2, 8),
@@ -226,19 +224,20 @@ void map::buildRoom(const int row, const int col, const int m_row, const int m_c
                 getCol()/rand_int(2, 8));
       return;
     }
+    i++;
   }*/
 
-  for(int i = row; i <= m_row+row; i++)
+  for(int i = row; i <= rRow+row; i++)
   {
     getxy(i, col) = '#';
-    getxy(i, m_col+col) = '#';
+    getxy(i, rCol+col) = '#';
   }
-  for(int i = col; i <= m_col+col; i++)
+  for(int i = col; i <= rCol+col; i++)
   {
     getxy(row, i) = '#';
-    getxy(m_row+row, i) = '#';
+    getxy(rRow+row, i) = '#';
   }
 
-  getxy(m_row+row-3, m_col+col) = '.';
+  getxy(rRow+row-3, rCol+col) = '.';
   return;
 }

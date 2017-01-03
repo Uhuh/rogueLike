@@ -6,12 +6,11 @@
 #include <vector>
 #include <ncurses.h>
 #include <unistd.h>
-#include <map>
-#include <tuple>
 
 class map
 {
   private:
+    //data is what's being used for the map storing.
     std::vector<char> data;
     //isVis is a vector that marks where the user has traveled on the map
     //so we can output the areas they've been too.
@@ -35,7 +34,9 @@ class map
 
     void outUser(WINDOW* game_win, const unit & a);
     void build(int row, int col);
+    
     void buildRoom(const int row, const int col, const int m_row, const int m_col);
+
     void outMap(WINDOW*);
     void placeMonster(WINDOW*, const unit&);
     void moveMonster(unit & a, unit & b);
