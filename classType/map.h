@@ -34,8 +34,8 @@ class map
 
     void outUser(WINDOW* game_win, const unit & a);
     void build(int row, int col);
-    
-    void buildRoom(const int row, const int col, const int m_row, const int m_col);
+
+    void buildRoom();
 
     void outMap(WINDOW*);
     void placeMonster(WINDOW*, const unit&);

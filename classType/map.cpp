@@ -194,38 +194,35 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
 }
 
 
-void map::buildRoom(const int row, const int col, const int rRow, const int rCol)
+void map::buildRoom()
 {
-  assert(row + rRow <= getRow() && col + rCol <= getCol());
-  assert(row >= 0 && col >= 0 && rRow > 0 && rCol > 0);
-  bool test = false;
+
+  int row = getRow()/rand_int(2, 8), rRow = getRow()/rand_int(2, 8);
+  int col = getCol()/rand_int(2, 8), rCol = getCol()/rand_int(2, 8);
+
   int i = 0;
-  /*
+
   while((row - i) > 0 && (row + i) < getRow())
   {
     if(getxy(col, row + i) == '#' || getxy(col, row - i) == '#')
     {
-      buildRoom(getRow()/rand_int(2, 8),
-                getCol()/rand_int(2, 8),
-                getRow()/rand_int(2, 8),
-                getCol()/rand_int(2, 8));
+      buildRoom();
       return;
     }
     i++;
   }
+
   i = 0;
+
   while((col - i) > 0 && (col + i) < getCol())
   {
     if(getxy(col + i, row) == '#' || getxy(col - i, row) == '#')
     {
-      buildRoom(getRow()/rand_int(2, 8),
-                getCol()/rand_int(2, 8),
-                getRow()/rand_int(2, 8),
-                getCol()/rand_int(2, 8));
+      buildRoom();
       return;
     }
     i++;
-  }*/
+  }
 
   for(int i = row; i <= rRow+row; i++)
   {
