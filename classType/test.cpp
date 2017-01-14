@@ -18,19 +18,8 @@ int main()
   map world(40, 60);
   world.build(world.getRow()-1, world.getCol()-1);
 
-  //Check the rand.cpp for how this is made.
-  // Trying out how to make the room by random.
-  world.buildRoom(world.getRow()/rand_int(2, 8),
-                  world.getCol()/rand_int(2, 8),
-                  world.getRow()/rand_int(2, 8),
-                  world.getCol()/rand_int(2, 8));
-
-  world.buildRoom(world.getRow()/rand_int(2, 8),
-                  world.getCol()/rand_int(2, 8),
-                  world.getRow()/rand_int(2, 8),
-                  world.getCol()/rand_int(2, 8));
-
-
+  world.buildRoom();
+  world.buildRoom();
 
   a.spawn(world);
   //Using x,y to update ncurses window.
