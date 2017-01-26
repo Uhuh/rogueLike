@@ -20,7 +20,7 @@ class map
     int m_row, m_col;
 
   public:
-    map(int rw, int cl): m_row(rw), m_col(cl), data(rw*cl, '.'), isVis(rw*cl, true){}
+    map(int rw, int cl): m_row(rw), m_col(cl), data(rw*cl, '.'), isVis(rw*cl, false){}
 
 
     const char& getxy(int row,int col) const { return data[row+col*m_row]; }
