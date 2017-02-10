@@ -25,6 +25,11 @@ void map::build(int row, int col)
 void map::setVis(int row, int col, bool vis)
 {
   assert(row <= m_row && col <= m_col);
+  // Just like the vector being used to display the map
+  // we want the visual vector to mirror it, in size
+  // and how we show it, so like the getxy() funct.
+  // we make this 1d vector into 2d.
+  // row+col*m_row;
   isVis[row+col*m_row] = vis;
   isVis[row+1+col*m_row] = vis;
   isVis[row-1+col*m_row] = vis;
@@ -62,7 +67,6 @@ void map::outUser(WINDOW* game_win, const unit & a)
   wattron(game_win, COLOR_PAIR(1));
   //Outputting our guys symbol.
   mvwprintw(game_win, a.m_x, a.m_y, a.getMe().c_str());
-  getxy(a.m_x, a.m_y) = a.getMe()[0];
   wrefresh(game_win);
   return;
 }
@@ -94,7 +98,7 @@ bool map::monsterVision(unit& a, unit& b)
 
 void map::moveMonster(unit & a,  unit & b)
 {
-  if(monsterVision(a, b))
+  /*if(monsterVision(a, b))
   {
     if((b.m_x - a.m_x) >= 0 && (getxy(b.m_x-1, b.m_y) != '#'))
     {
@@ -121,7 +125,7 @@ void map::moveMonster(unit & a,  unit & b)
     }
   }
 
-  else
+  else*/
   {
 
     // Picks a number from 1 to 4.
@@ -201,7 +205,7 @@ void map::buildRoom()
   int col = getCol()/rand_int(2, 8), rCol = getCol()/rand_int(2, 8);
 
   int i = 0;
-
+/*
   while((row - i) > 0 && (row + i) < getRow())
   {
     if(getxy(col, row + i) == '#' || getxy(col, row - i) == '#')
@@ -223,7 +227,7 @@ void map::buildRoom()
     }
     i++;
   }
-
+*/
   for(int i = row; i <= rRow+row; i++)
   {
     getxy(i, col) = '#';
