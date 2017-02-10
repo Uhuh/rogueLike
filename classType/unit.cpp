@@ -55,6 +55,8 @@ void unit::moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &
       {
         m_x-=1;
         world.getxy(m_x+1, m_y) = '.';
+        world.getxy(m_x, m_y) = getMe()[0];
+
       }
 
       else if((world.getxy(m_x - 1, m_y) == monster.getMe()[0]))
@@ -74,6 +76,7 @@ void unit::moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &
       {
         m_x+=1;
         world.getxy(m_x-1, m_y) = '.';
+        world.getxy(m_x, m_y) = getMe()[0];
 
       }
 
@@ -95,6 +98,7 @@ void unit::moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &
       {
         m_y-=1;
         world.getxy(m_x, m_y+1) = '.';
+        world.getxy(m_x, m_y) = getMe()[0];
 
       }
 
@@ -116,6 +120,8 @@ void unit::moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &
       {
         m_y+=1;
         world.getxy(m_x, m_y-1) = '.';
+        world.getxy(m_x, m_y) = getMe()[0];
+
 
       }
 
