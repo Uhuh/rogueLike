@@ -19,11 +19,9 @@ int main()
   world.build(world.getRow()-1, world.getCol()-1);
 
   world.buildRoom();
-  world.buildRoom();
 
   a.spawn(world);
   //Using x,y to update ncurses window.
-  int x = a.m_x, y = a.m_y;
   a.setMe('@');
 
   std::string name;
@@ -70,12 +68,13 @@ int main()
     world.outMap(game_win);
     world.placeMonster(game_win, b);
     world.outUser(game_win, a);
+    a.moveUnit(game_win, monster_win, b, world);
     world.moveMonster(a, b);
     //outputting the players stats in another window.
     a.outStats(stats_win);
     b.outStats(monster_win);
     //Reads user input and moves the unit.
-    a.moveUnit(game_win, monster_win, b, world);
+
 
   }
 
