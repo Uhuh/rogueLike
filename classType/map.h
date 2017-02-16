@@ -44,7 +44,7 @@ class map
     void buildRoom();
 
     //ncurses for outputting the map.
-    void outMap(WINDOW*);
+    void outMap(WINDOW*, const unit&);
     //Places monster in the vector.
     void placeMonster(WINDOW*, const unit&);
 

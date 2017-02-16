@@ -38,11 +38,12 @@ void map::setVis(int row, int col, bool vis)
 }
 
 
-void map::outMap(WINDOW* game_win)
+void map::outMap(WINDOW* game_win, const unit& a)
 {
   // (Make this a function)
   // Coloring the map white on black.
   wattron(game_win, COLOR_PAIR(2));
+  setVis(a.m_x, a.m_y, true);
 
   for(int i = 0; i < getRow(); i++)
   {
@@ -205,7 +206,7 @@ void map::buildRoom()
   int col = getCol()/rand_int(2, 8), rCol = getCol()/rand_int(2, 8);
 
   int i = 0;
-/*
+
   while((row - i) > 0 && (row + i) < getRow())
   {
     if(getxy(col, row + i) == '#' || getxy(col, row - i) == '#')
@@ -227,7 +228,7 @@ void map::buildRoom()
     }
     i++;
   }
-*/
+
   for(int i = row; i <= rRow+row; i++)
   {
     getxy(i, col) = '#';
