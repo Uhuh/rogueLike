@@ -19,19 +19,28 @@ class unit
     // we got sick of making getters/setters
     int m_x;
     int m_y;
+
+    // The idea of this var is to user it for the monsters.
     int visionLimit;
+
+
     unit(): health(10), atk(1), def(1), str(1),
             name("Gurk"), me("@"), visionLimit(6) {};
 
+    //This could probably be removed since x/y cords are more important than
+    //names. TODO: Make name and me public.
     std::string getName() const { return name; }
     std::string getMe() const { return me; }
 
-    void moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &world);
-    void spawn(const map & area);
 
+    //Oh lord this is a mess, to many parameters.
+    void moveUser(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &world);
+    void spawn(const map & area);
+    // will be used when str/def/atk are actually being used to calculate dmg and such.
     int getStr() const { return str; }
     int getDef() const { return def; }
     int getAtk() const { return atk; }
+    
     int getHealth() const { return health; }
 
     void setHealth(const int hp);

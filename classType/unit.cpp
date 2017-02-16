@@ -44,7 +44,7 @@ void unit::spawn(const map & area)
 
 
 
-void unit::moveUnit(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &world)
+void unit::moveUser(WINDOW* game_win, WINDOW* monster_win, unit & monster, map &world)
 {
   //read in user input for movement.
   const auto key = wgetch(game_win);
