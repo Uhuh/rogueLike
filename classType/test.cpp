@@ -25,7 +25,7 @@ int main()
   a.setMe('@');
 
   std::string name;
-  std::cout << "Speak your name friend and enter: ";
+  std::cout << "Enter name: ";
   std::getline(std::cin, name);
   a.setName(name);
 
@@ -56,26 +56,21 @@ int main()
 
   while(true)
   {
-
   // Make stats window pretty.
+  //Annoyingly have to call the wborder functions for the functions to even appear.
+  // >:()
+
     wborder(stats_win, '|', '|', '=','=','*','*','*','*');
     wborder(monster_win, '|', '|', '=','=','*','*','*','*');
-
-    //Our guy can see wherever he has gone.""
-    world.setVis(a.m_x, a.m_y, true);
-
-    //outputting the map to screen.
-    world.outMap(game_win);
-    world.placeMonster(game_win, b);
-    world.outUser(game_win, a);
-    a.moveUnit(game_win, monster_win, b, world);
-    world.moveMonster(a, b);
-    //outputting the players stats in another window.
     a.outStats(stats_win);
     b.outStats(monster_win);
-    //Reads user input and moves the unit.
 
-
+    //outputting the map to screen.
+    world.outMap(game_win, a);
+    world.outUser(game_win, a);
+    world.placeMonster(game_win, b);
+    a.moveUser(game_win, monster_win, b, world);
+    world.moveMonster(a, b);
   }
 
   endwin();
