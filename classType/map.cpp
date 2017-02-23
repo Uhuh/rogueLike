@@ -9,11 +9,19 @@ void map::build(int row, int col)
 {
   for(int i = 0; i <= row; i++)
   {
+    //Setting the borders as seeable.
+    isVis[i+0*m_row] = true;
+    isVis[i+col*m_row] = true;
+
     getxy(i, 0) = '#';
     getxy(i, col) = '#';
   }
   for(int i = 0; i <= col; i++)
   {
+    //setting the borders as seeable.
+    isVis[0+i*m_row] = true;
+    isVis[row+i*m_row] = true;
+
     getxy(0, i) = '#';
     getxy(row, i) = '#';
   }
@@ -43,19 +51,18 @@ void map::outMap(WINDOW* game_win, const unit& a)
   // (Make this a function)
   // Coloring the map white on black.
   wattron(game_win, COLOR_PAIR(2));
-  setVis(a.m_x, a.m_y, true);
+  //setVis(a.m_x, a.m_y, true);
 
   for(int i = 0; i < getRow(); i++)
   {
     for(int j = 0; j < getCol(); j++)
     {
       if(getVis(i, j))
+      {
         mvwprintw(game_win, i,j, "%c", getxy(i, j));
-
+      }
     }
   }
-
-
 
   wrefresh(game_win);
   // wclear(game_win);
@@ -201,35 +208,19 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
 
 void map::buildRoom()
 {
-
-  int row = getRow()/rand_int(2, 8), rRow = getRow()/rand_int(2, 8);
+  std::cout << "test" << std::endl;
+  // bRow means bottom row (bottom wall), and rCol means right collum, (right wall)
+  //           (top)row
+  //     _ _ _ _ _ _ _ _ _ _
+//(left) | . . . . . . . . |(right) col
+  //col  | . . . . . . . . |
+  //     = = = = = = = = = =
+  //          (Bottom)row
+  int row = getRow()/rand_int(2, 8), bRow = getRow()/rand_int(2, 8);
   int col = getCol()/rand_int(2, 8), rCol = getCol()/rand_int(2, 8);
 
-  int i = 0;
 
-  while((row - i) > 0 && (row + i) < getRow())
-  {
-    if(getxy(col, row + i) == '#' || getxy(col, row - i) == '#')
-    {
-      buildRoom();
-      return;
-    }
-    i++;
-  }
-
-  i = 0;
-
-  while((col - i) > 0 && (col + i) < getCol())
-  {
-    if(getxy(col + i, row) == '#' || getxy(col - i, row) == '#')
-    {
-      buildRoom();
-      return;
-    }
-    i++;
-  }
-
-  for(int i = row; i <= rRow+row; i++)
+  for(int i = row; i <= bRow+row; i++)
   {
     getxy(i, col) = '#';
     getxy(i, rCol+col) = '#';
@@ -237,9 +228,9 @@ void map::buildRoom()
   for(int i = col; i <= rCol+col; i++)
   {
     getxy(row, i) = '#';
-    getxy(rRow+row, i) = '#';
+    getxy(bRow+row, i) = '#';
   }
 
-  getxy(rRow+row-3, rCol+col) = '.';
+  getxy(bRow+row-3, rCol+col) = '.';
   return;
 }

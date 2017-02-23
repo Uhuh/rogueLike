@@ -30,7 +30,7 @@ class map
     char& getxy(int row,int col) { return data[row+col*m_row]; }
 
     const bool getVis(int row,int col) const { assert(row <= m_row && col <= m_col); return isVis[row+col*m_row]; }
-    void setVis(int row,int col, bool vis);
+    void setVis(int row, int col, bool vis);
 
     int getRow() const { return m_row; }
     int getCol() const { return m_col; }
