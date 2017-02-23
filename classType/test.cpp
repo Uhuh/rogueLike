@@ -19,16 +19,21 @@ int main()
   world.build(world.getRow()-1, world.getCol()-1);
 
   world.buildRoom();
+  world.buildRoom();
+  //world.build(world.getRow()-1, world.getCol()-1);
 
+ // world.buildRoom();
+//  world.buildRoom();
   a.spawn(world);
+
   //Using x,y to update ncurses window.
   a.setMe('@');
+
 
   std::string name;
   std::cout << "Enter name: ";
   std::getline(std::cin, name);
   a.setName(name);
-
   b.setName("Goblin");
   b.setMe('G');
   b.spawn(world);
@@ -51,7 +56,7 @@ int main()
 
   game_win = newwin(world.getRow(), world.getCol(), 0, 0);
   stats_win = newwin(10, 20, 0, world.getCol()+5);
-  monster_win = newwin(10, 20, 30, world.getCol()+5);
+  monster_win = newwin(10, 20, world.getRow()-10, world.getCol()+5);
   keypad(game_win, TRUE);
 
   while(true)
@@ -70,6 +75,7 @@ int main()
     world.outUser(game_win, a);
     world.placeMonster(game_win, b);
     a.moveUser(game_win, monster_win, b, world);
+    world.setVis(a.m_x, a.m_y, true);
     world.moveMonster(a, b);
   }
 
