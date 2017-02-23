@@ -142,7 +142,7 @@ void map::moveMonster(unit & a,  unit & b)
       case 1:
         // We need to stop the monster from leaving a trail.
         // So replace the last spot they were in with a dot (' . ')
-        if((getxy(b.m_x - 1, b.m_y) == '.'))
+        if(getxy(b.m_x - 1, b.m_y) == '.')
         {
           b.m_x-=1;
           getxy(b.m_x + 1, b.m_y) = '.';
@@ -151,7 +151,7 @@ void map::moveMonster(unit & a,  unit & b)
         break;
       case 2:
 
-        if((getxy(b.m_x + 1, b.m_y) == '.'))
+        if(getxy(b.m_x + 1, b.m_y) == '.')
         {
           b.m_x+=1;
           getxy(b.m_x - 1, b.m_y) = '.';
@@ -161,7 +161,7 @@ void map::moveMonster(unit & a,  unit & b)
         break;
       case 3:
 
-        if((getxy(b.m_x , b.m_y + 1) == '.'))
+        if(getxy(b.m_x , b.m_y + 1) == '.')
         {
           b.m_y+=1;
           getxy(b.m_x, b.m_y - 1) = '.';
@@ -170,7 +170,7 @@ void map::moveMonster(unit & a,  unit & b)
         break;
       case 4:
 
-        if((getxy(b.m_x, b.m_y - 1) == '.'))
+        if(getxy(b.m_x, b.m_y - 1) == '.')
         {
           b.m_y-=1;
           getxy(b.m_x, b.m_y + 1) = '.';
@@ -208,7 +208,6 @@ void map::placeMonster(WINDOW* game_win, const unit& b)
 
 void map::buildRoom()
 {
-  std::cout << "test" << std::endl;
   // bRow means bottom row (bottom wall), and rCol means right collum, (right wall)
   //           (top)row
   //     _ _ _ _ _ _ _ _ _ _
@@ -216,7 +215,7 @@ void map::buildRoom()
   //col  | . . . . . . . . |
   //     = = = = = = = = = =
   //          (Bottom)row
-  int row = getRow()/rand_int(2, 8), bRow = getRow()/rand_int(2, 8);
+  int row = getRow()/rand_int(1, 6), bRow = getRow()/rand_int(1, 6);
   int col = getCol()/rand_int(2, 8), rCol = getCol()/rand_int(2, 8);
 
 
