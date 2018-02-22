@@ -1,12 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include "rand.h"
 #include <string>
 #include <cstdlib>
 #include <unistd.h>
 #include <ncurses.h>
 class map;
-
 
 class unit
 {
@@ -22,7 +20,6 @@ class unit
 
     // The idea of this var is to user it for the monsters.
     int visionLimit;
-
 
     unit(): health(10), atk(1), def(1), str(1),
             name("Gurk"), me("@"), visionLimit(6) {};

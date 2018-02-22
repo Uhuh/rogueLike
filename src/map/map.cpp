@@ -1,4 +1,5 @@
-#include "map.h"
+#include "./map.h"
+#include "../unit/rand.h"
 #include <iostream>
 #include <random>
 
@@ -126,7 +127,7 @@ void map::moveMonster(unit & a,  unit & b)
       getxy(b.m_x, b.m_y + 1) = '.';
     }
 
-    else if((b.m_y - a.m_y) <= 0 && (getxy(b.m_x, b.m_y+1) != '#'))
+    else if((b.m_y - a.m_y) <= 0 &&q   (getxy(b.m_x, b.m_y+1) != '#'))
     {
       b.m_y += 1;
       getxy(b.m_x, b.m_y-1) = '.';

@@ -1,5 +1,6 @@
-#include "unit.h"
-#include "map.h"
+#include "./unit.h"
+#include "../map/map.h"
+#include "./rand.h"
 #include <iostream>
 
 

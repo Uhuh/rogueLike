@@ -1,7 +1,6 @@
 #ifndef MAP_H
 #define MAP_H
-#include "unit.h"
-#include "rand.h"
+#include "../unit/unit.h"
 #include <cassert>
 #include <vector>
 #include <ncurses.h>

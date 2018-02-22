@@ -1,7 +1,7 @@
-#include "unit.h"
+#include "unit/unit.h"
 #include <ncurses.h>
 #include <vector>
-#include "map.h"
+#include "map/map.h"
 #include <iostream>
 #include <unistd.h>
 #include <cstring>
@@ -75,7 +75,7 @@ int main()
     world.outUser(game_win, a);
     world.placeMonster(game_win, b);
     a.moveUser(game_win, monster_win, b, world);
-    world.setVis(a.m_x, a.m_y, true);
+    world.setVis(a.m_x, a.m_y, false);
     world.moveMonster(a, b);
   }
 
